@@ -29,7 +29,6 @@ class _TwiterHomeState extends State<TwiterHome> {
                   Image.asset("images/Feature stroke icon.png"),
                 ])),
         bottomNavigationBar: BottomNavigationBar(
-          //  currentIndex: 0,
           selectedItemColor: Colors.blue,
           type: BottomNavigationBarType.fixed,
           items: const [
