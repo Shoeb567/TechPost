@@ -76,8 +76,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                                       IconButton(icon:Icon(Icons.share, size: 25, color: Colors.grey),onPressed: (){}),
                                       IconButton(icon:Icon(Icons.favorite_border, size: 25, color: Colors.grey),onPressed: (){}),
                                       IconButton(icon:Icon(Icons.archive_outlined, size: 25, color: Colors.grey),onPressed: (){}),],),
-                                  SizedBox(height: 10),],),),],);}))]);
-            }})));
+                                  SizedBox(height: 10),],),),],);}))]);}})));
   }
 }
 class User {

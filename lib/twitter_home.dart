@@ -43,9 +43,7 @@ class _TwiterHomeState extends State<TwiterHome> {
                 icon: Icon(Icons.markunread_outlined), label: ""),
           ],
         ),
-        body: Container(
-            child:ShowApiData()
-        ),
+        body: Container(child:ShowApiData()),
         floatingActionButton: FloatingActionButton(
           elevation: 0.0,
           onPressed: () {},
