@@ -39,8 +39,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                     child: ListView.builder(
                       itemCount: snap.data.length,
                       itemBuilder: (BuildContext context, int index) {
-                        String oneChar =
-                            snap.data[index].name.substring(0, 1).toUpperCase();
+                        String oneChar = snap.data[index].name.substring(0, 1).toUpperCase();
                         return Column(
                           children: [
                             ListTile(
