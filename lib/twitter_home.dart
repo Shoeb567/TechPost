@@ -5,14 +5,14 @@ import "dart:convert";
 
 import "package:http/http.dart" as http;
 
+import 'ApiFetchScreens/show_api_data.dart';
+
 class TwiterHome extends StatefulWidget {
   @override
   _TwiterHomeState createState() => _TwiterHomeState();
 }
 
 class _TwiterHomeState extends State<TwiterHome> {
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class _TwiterHomeState extends State<TwiterHome> {
           ],
         ),
         body: Container(
-
+            child:ShowApiData()
         ),
         floatingActionButton: FloatingActionButton(
           elevation: 0.0,
