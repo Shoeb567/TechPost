@@ -22,8 +22,8 @@ class _TwiterHomeState extends State<TwiterHome> {
                   const CircleAvatar(
                       backgroundColor: Colors.black,
                       child: Text("S", style: TextStyle(color: Colors.white))),
-                  Image.asset(ImageFetch.logo),
-                  Image.asset(ImageFetch.fatureicon),
+                  Image.asset(AppAssets.logo),
+                  Image.asset(AppAssets.fatureicon),
                 ])),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.blue,
