@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
+import "package:tech_post_app/imagefile.dart";
 
 class TwiterHome extends StatefulWidget {
   @override
@@ -7,10 +8,12 @@ class TwiterHome extends StatefulWidget {
 }
 
 class _TwiterHomeState extends State<TwiterHome> {
+
+  ImageFetch imageFetch = ImageFetch();
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(statusBarColor: Colors.white));
+        const SystemUiOverlayStyle(statusBarColor: Colors.black));
     // ignore: file_names
     return Scaffold(
         appBar: AppBar(
@@ -21,39 +24,26 @@ class _TwiterHomeState extends State<TwiterHome> {
                   const CircleAvatar(
                     backgroundColor: Colors.black,
                     child: Text(
-                      "S",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                  Image.asset("images/Twitter Logo.png"),
-                  Image.asset("images/Feature stroke icon.png"),
-                ])),
+                      "S", style: TextStyle(color: Colors.white),),),
+                  Image.asset(imageFetch.logo),
+                  Image.asset(imageFetch.fatureicon),])),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.blue,
           type: BottomNavigationBarType.fixed,
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "",
-            ),
+              icon: Icon(Icons.home), label: "",),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: "",
-            ),
+              icon: Icon(Icons.search), label: "",),
             BottomNavigationBarItem(
-              icon: Icon(Icons.notifications_none),
-              label: "",
-            ),
+              icon: Icon(Icons.notifications_none), label: "",),
             BottomNavigationBarItem(
-              icon: Icon(Icons.markunread_outlined),
-              label: "",
-            ),
+              icon: Icon(Icons.markunread_outlined), label: "",),
           ],
         ),
         floatingActionButton: FloatingActionButton(
           elevation: 0.0,
           onPressed: () {},
-          child: const Icon(Icons.add),
-        ));
+          child: const Icon(Icons.add),));
   }
 }
