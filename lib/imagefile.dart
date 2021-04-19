@@ -1,4 +1,5 @@
-class ImageFetch{
-  var logo = "appassets/TwitterLogo.png";
-  var fatureicon = "appassets/Featurestrokeicon.png";
+// ignore: avoid_classes_with_only_static_members
+class ImageFetch {
+   static String logo = "appassets/TwitterLogo.png";
+   static String fatureicon = "appassets/Featurestrokeicon.png";
 }

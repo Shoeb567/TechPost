@@ -8,8 +8,6 @@ class TwiterHome extends StatefulWidget {
 }
 
 class _TwiterHomeState extends State<TwiterHome> {
-  ImageFetch imageFetch = ImageFetch();
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -24,8 +22,8 @@ class _TwiterHomeState extends State<TwiterHome> {
                   const CircleAvatar(
                       backgroundColor: Colors.black,
                       child: Text("S", style: TextStyle(color: Colors.white))),
-                  Image.asset(imageFetch.logo),
-                  Image.asset(imageFetch.fatureicon),
+                  Image.asset(ImageFetch.logo),
+                  Image.asset(ImageFetch.fatureicon),
                 ])),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.blue,
