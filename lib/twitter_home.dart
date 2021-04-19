@@ -9,6 +9,7 @@ class TwiterHome extends StatefulWidget {
 
 class _TwiterHomeState extends State<TwiterHome> {
   ImageFetch imageFetch = ImageFetch();
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -21,27 +22,25 @@ class _TwiterHomeState extends State<TwiterHome> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const CircleAvatar(
-                    backgroundColor: Colors.black,
-                    child: Text("S", style: TextStyle(color: Colors.white),),),
+                      backgroundColor: Colors.black,
+                      child: Text("S", style: TextStyle(color: Colors.white))),
                   Image.asset(imageFetch.logo),
-                  Image.asset(imageFetch.fatureicon),])),
+                  Image.asset(imageFetch.fatureicon),
+                ])),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.blue,
           type: BottomNavigationBarType.fixed,
           items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home), label: "",),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search), label: "",),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notifications_none), label: "",),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.markunread_outlined), label: "",),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.notifications_none), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.markunread_outlined), label: ""),
           ],
         ),
         floatingActionButton: FloatingActionButton(
           elevation: 0.0,
           onPressed: () {},
-          child: const Icon(Icons.add),));
+          child: const Icon(Icons.add),
+        ));
   }
 }
