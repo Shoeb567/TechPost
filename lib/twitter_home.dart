@@ -8,7 +8,6 @@ class TwiterHome extends StatefulWidget {
 }
 
 class _TwiterHomeState extends State<TwiterHome> {
-
   ImageFetch imageFetch = ImageFetch();
   @override
   Widget build(BuildContext context) {
@@ -23,8 +22,7 @@ class _TwiterHomeState extends State<TwiterHome> {
                 children: [
                   const CircleAvatar(
                     backgroundColor: Colors.black,
-                    child: Text(
-                      "S", style: TextStyle(color: Colors.white),),),
+                    child: Text("S", style: TextStyle(color: Colors.white),),),
                   Image.asset(imageFetch.logo),
                   Image.asset(imageFetch.fatureicon),])),
         bottomNavigationBar: BottomNavigationBar(
