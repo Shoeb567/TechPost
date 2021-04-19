@@ -46,8 +46,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                             ListTile(
                               leading: CircleAvatar(
                                   backgroundColor: Colors.black,
-                                  child: Text(oneChar,
-                                      style: TextStyle(color: Colors.white))),
+                                  child: Text(oneChar,style: TextStyle(color: Colors.white))),
                               title: Column(
                                 children: [
                                   Column(
@@ -56,28 +55,21 @@ class _ShowApiDataState extends State<ShowApiData> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Icon(Icons.favorite, size: 12, color: Colors.grey),
-                                          Text(
-                                            'Twitter Home',
-                                            style: TextStyle(fontSize: 10),)],),],),
+                                          Text('Twitter Home', style: TextStyle(fontSize: 10),)],),],),
                                   SizedBox(height: 5),
                                   Row(
                                     children: [
-                                      Text(
-                                        '${snap.data[index].name}',
-                                        style: TextStyle(fontWeight: FontWeight.bold),),
+                                      Text('${snap.data[index].name}', style: TextStyle(fontWeight: FontWeight.bold),),
                                       Icon(Icons.verified, size: 17, color: Colors.blue),
                                       Text('@', style: TextStyle(fontSize: 15)),
                                       Expanded(
-                                        child: Text(
-                                            '${snap.data[index].username} - 10h',
-                                            style: TextStyle(fontSize: 14)),),],),
+                                        child: Text('${snap.data[index].username} - 10h', style: TextStyle(fontSize: 14)),),],),
                                   SizedBox(height: 10),
                                   Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Expanded(
-                                          child: Text(
-                                              'TechPost TechPost TechPost TechPost TechPost TechPost TechPost TechPost TechPost TechPost')),],),
+                                          child: Text('TechPost TechPost TechPost TechPost TechPost TechPost TechPost TechPost TechPost TechPost')),],),
                                   SizedBox(height: 15),
                                   Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,7 +82,6 @@ class _ShowApiDataState extends State<ShowApiData> {
                                   SizedBox(height: 10),],),),],);},),),],);}},),),);
   }
 }
-
 class User {
   // ignore: type_annotate_public_apis
   final name, email, username;
