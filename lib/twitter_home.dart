@@ -1,6 +1,9 @@
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:tech_post_app/imagefile.dart";
+import "dart:convert";
+
+import "package:http/http.dart" as http;
 
 class TwiterHome extends StatefulWidget {
   @override
@@ -8,6 +11,9 @@ class TwiterHome extends StatefulWidget {
 }
 
 class _TwiterHomeState extends State<TwiterHome> {
+
+
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
@@ -31,9 +37,14 @@ class _TwiterHomeState extends State<TwiterHome> {
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
             BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.notifications_none), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.markunread_outlined), label: ""),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.notifications_none), label: ""),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.markunread_outlined), label: ""),
           ],
+        ),
+        body: Container(
+
         ),
         floatingActionButton: FloatingActionButton(
           elevation: 0.0,
