@@ -62,14 +62,12 @@ class _ShowApiDataState extends State<ShowApiData> {
                                       Text('${snap.data[index].name}', style: TextStyle(fontWeight: FontWeight.bold),),
                                       Icon(Icons.verified, size: 17, color: Colors.blue),
                                       Text('@', style: TextStyle(fontSize: 15)),
-                                      Expanded(
-                                        child: Text('${snap.data[index].username} - 10h', style: TextStyle(fontSize: 14)),),],),
+                                      Expanded(child: Text('${snap.data[index].username} - 10h', style: TextStyle(fontSize: 14)),),],),
                                   SizedBox(height: 10),
                                   Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Expanded(
-                                          child: Text('TechPost TechPost TechPost TechPost TechPost TechPost TechPost TechPost TechPost TechPost')),],),
+                                      Expanded(child: Text('TechPost TechPost TechPost TechPost TechPost TechPost TechPost TechPost TechPost TechPost')),],),
                                   SizedBox(height: 15),
                                   Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,12 +77,12 @@ class _ShowApiDataState extends State<ShowApiData> {
                                       IconButton(icon:Icon(Icons.share, size: 25, color: Colors.grey),onPressed: (){}),
                                       IconButton(icon:Icon(Icons.favorite_border, size: 25, color: Colors.grey),onPressed: (){}),
                                       IconButton(icon:Icon(Icons.archive_outlined, size: 25, color: Colors.grey),onPressed: (){}),],),
-                                  SizedBox(height: 10),],),),],);},),),],);}},),),);
+                                  SizedBox(height: 10),],),),],);}))]);
+            }})));
   }
 }
 class User {
   // ignore: type_annotate_public_apis
   final name, email, username;
-
   User(this.name, this.email, this.username);
 }
