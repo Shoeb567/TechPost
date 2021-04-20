@@ -26,9 +26,9 @@ class _ShowApiDataState extends State<ShowApiData> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: FutureBuilder(
+      child: FutureBuilder (
         future: getUserData(),
-        builder: (context, AsyncSnapshot snap) {
+        builder: (context,  AsyncSnapshot<List<User>> snap) {
           if (snap.data == null) {
             return Container(
               child: Center(
@@ -36,8 +36,8 @@ class _ShowApiDataState extends State<ShowApiData> {
               ),
             );
           } else {
-            return ListView.builder(
-              itemCount: snap.data.toString().length,
+            return ListView.builder (
+              itemCount: snap.data.length,
               itemBuilder: (BuildContext context, int index) {
                 String oneChar = snap.data[index].name
                     .toString()
@@ -77,7 +77,9 @@ class _ShowApiDataState extends State<ShowApiData> {
                                 ),
                                 Text(
                                   '  Twitter Home',
-                                  style: TextStyle(fontSize: 10),
+                                  style: TextStyle(fontSize: 10,
+                                    color: Color.fromRGBO(189, 197, 205, 1),
+                                  ),
                                 )
                               ],
                             ),
@@ -92,12 +94,17 @@ class _ShowApiDataState extends State<ShowApiData> {
                                     size: 17, color: Colors.blue),
                                 Text(
                                   '@',
-                                  style: TextStyle(fontSize: 15),
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Color.fromRGBO(189, 197, 205, 1),
+                                  ),
                                 ),
                                 Expanded(
                                   child: Text(
                                     '${snap.data[index].username} - 10h',
-                                    style: TextStyle(fontSize: 14),
+                                    style: TextStyle(fontSize: 14,
+                                      color: Color.fromRGBO(189, 197, 205, 1),
+                                    ),
                                   ),
                                 ),
                                 Icon(
