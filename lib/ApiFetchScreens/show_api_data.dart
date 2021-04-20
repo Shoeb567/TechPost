@@ -57,12 +57,17 @@ class _ShowApiDataState extends State<ShowApiData> {
                               ),
                             ),
                             child: ListTile(
-                              leading: CircleAvatar(
-                                backgroundColor: Colors.black,
-                                child: Text(
-                                  oneChar,
-                                  style: TextStyle(color: Colors.white),
-                                ),
+                              leading: Column(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: Colors.black,
+                                    child: Text(
+                                      oneChar,
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+
+                                ],
                               ),
                               title: Column(
                                 children: [
