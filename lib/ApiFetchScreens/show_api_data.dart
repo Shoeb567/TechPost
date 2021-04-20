@@ -11,11 +11,12 @@ class ShowApiData extends StatefulWidget {
 class _ShowApiDataState extends State<ShowApiData> {
   Future<List<User>> getUserData() async {
     final response =
-        await http.get("https://jsonplaceholder.typicode.com/users");
+        await http.get("https://jsonplaceholder.typicode.com/posts");
+
     final jsonData = jsonDecode(response.body);
     List<User> users = [];
     for (var i in jsonData) {
-      User user = User(i["name"].toString(), i["username"].toString());
+      User user = User(i["userId"].toString(),i["name"].toString(), i["username"].toString(),i["body"].toString());
       users.add(user);
     }
     print(users.length);
@@ -78,7 +79,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                                 Text(
                                   '  Twitter Home',
                                   style: TextStyle(fontSize: 10,
-                                    color: Color.fromRGBO(189, 197, 205, 1),
+                                    color: Color.fromRGBO(104, 118, 132, 1),
                                   ),
                                 )
                               ],
@@ -87,7 +88,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                             Row(
                               children: [
                                 Text(
-                                  '${snap.data[index].name}',
+                                  ' ${snap.data[index].name}',
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                                 Icon(Icons.verified,
@@ -96,14 +97,14 @@ class _ShowApiDataState extends State<ShowApiData> {
                                   '@',
                                   style: TextStyle(
                                     fontSize: 15,
-                                    color: Color.fromRGBO(189, 197, 205, 1),
+                                    color: Color.fromRGBO(104, 118, 132, 1),
                                   ),
                                 ),
                                 Expanded(
                                   child: Text(
                                     '${snap.data[index].username} - 10h',
                                     style: TextStyle(fontSize: 14,
-                                      color: Color.fromRGBO(189, 197, 205, 1),
+                                      color: Color.fromRGBO(104, 118, 132, 1),
                                     ),
                                   ),
                                 ),
@@ -119,8 +120,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
-                                  child: Text(
-                                      'TechPost TechPost TechPost TechPost TechPost TechPost TechPost TechPost TechPost TechPost'),
+                                  child: Text('${snap.data[index].userId} \n ${snap.data[index].body}' ),
                                 ),
                               ],
                             ),
@@ -187,7 +187,47 @@ class _ShowApiDataState extends State<ShowApiData> {
 }
 
 class User {
-  final String name, username;
+  final String userId, name, username, body;
 
-  User(this.name, this.username);
+  User(this.userId, this.name, this.username, this.body);
+
+//  factory User.fromJson(Map<String, dynamic> json) {
+//    List<Post> tempUsers = [];
+//    for (int i = 0; i < json['users'].length; i++) {
+//      Post post = Post.fromJson(json['users'][i]);
+//      tempUsers.add(post);
+//    }
+//    return User();
+  //}
 }
+class Post {
+  final String userId;
+  final String id;
+  final String title;
+  final String body;
+
+  Post({this.userId, this.id, this.title, this.body});
+
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
+      userId: json['userId'].toString(),
+      id: json['id'].toString(),
+      title: json['title'].toString(),
+      body: json['body'].toString(),
+    );
+  }
+}
+//class Users {
+//  final List<Post> users;
+//
+//  Users({this.users});
+//
+//  factory Users.fromJson(Map<String, dynamic> json) {
+//    List<Post> tempUsers = [];
+//    for (int i = 0; i < json['users'].length; i++) {
+//      Post post = Post.fromJson(json['users'][i]);
+//      tempUsers.add(post);
+//    }
+//    return Users(users: tempUsers);
+//  }
+//}
