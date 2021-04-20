@@ -39,6 +39,11 @@ flutter:
   assets:
     - appassets/Featurestrokeicon.png
     - appassets/TwitterLogo.png
+    - appassets/CommentStrokeIcon.png
+    - appassets/Retweetstrokeicon.png
+    - appassets/Sharestrokeicon.png
+    - appassets/Heart stroke icon.png
+    - appassets/Add text icon.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

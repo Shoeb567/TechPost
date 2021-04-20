@@ -1,10 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:tech_post_app/imagefile.dart";
-import "dart:convert";
-
-import "package:http/http.dart" as http;
-
 import 'ApiFetchScreens/show_api_data.dart';
 
 class TwiterHome extends StatefulWidget {
@@ -21,7 +17,9 @@ class _TwiterHomeState extends State<TwiterHome> {
     // ignore: file_names
     return Scaffold(
         appBar: AppBar(
+
             backgroundColor: Colors.white,
+            elevation: 0.3,
             title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -32,6 +30,8 @@ class _TwiterHomeState extends State<TwiterHome> {
                   Image.asset(AppAssets.fatureicon),
                 ])),
         bottomNavigationBar: BottomNavigationBar(
+          elevation: 0.3,
+          backgroundColor: Colors.white,
           selectedItemColor: Colors.blue,
           type: BottomNavigationBarType.fixed,
           items: const [
@@ -47,7 +47,7 @@ class _TwiterHomeState extends State<TwiterHome> {
         floatingActionButton: FloatingActionButton(
           elevation: 0.0,
           onPressed: () {},
-          child: const Icon(Icons.add),
+          child:  Image.asset(AppAssets.texticon),
         ));
   }
 }
