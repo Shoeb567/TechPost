@@ -91,7 +91,10 @@ class _ShowApiDataState extends State<ShowApiData> {
                                       ),
                                       Icon(Icons.verified,
                                           size: 17, color: Colors.blue),
-                                      Text('@', style: TextStyle(fontSize: 15)),
+                                      Text(
+                                        '@',
+                                        style: TextStyle(fontSize: 15),
+                                      ),
                                       Expanded(
                                         child: Text(
                                           '${snap.data[index].username.toString()} - 10h',
