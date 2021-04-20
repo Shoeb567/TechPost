@@ -184,7 +184,3 @@ class User {
 
   User(this.name, this.username);
 }
-//Sir please check code.
-//one error in this code
-//to scroll list and show invalid range...
-//how can i solve
