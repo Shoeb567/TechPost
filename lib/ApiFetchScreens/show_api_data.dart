@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import "package:http/http.dart" as http;
 import 'package:tech_post_app/imagefile.dart';
@@ -9,20 +10,47 @@ class ShowApiData extends StatefulWidget {
 }
 
 class _ShowApiDataState extends State<ShowApiData> {
+  Map<String,dynamic> post;
+  List<dynamic> userList ;
   Future<List<User>> getUserData() async {
-    final response =
-        await http.get("https://jsonplaceholder.typicode.com/posts");
+    final results = await Future.wait([
+      http.get('http://jsonplaceholder.typicode.com/users?id'),
+      http.get('http://jsonplaceholder.typicode.com/posts')
+    ]);
 
-    final jsonData = jsonDecode(response.body);
+   // final results = await http.get('http://jsonplaceholder.typicode.com/users');
+      //http.get('http://jsonplaceholder.typicode.com/users?userId=1'),
+
+//    final results = await http.get(
+//  'http://jsonplaceholder.typicode.com/users');
+//    final userapi = await http.get(
+//        http.get('http://jsonplaceholder.typicode.com/users?userId=1'));
+////    final response =
+////        await http.get("https://jsonplaceholder.typicode.com/posts");
+////    setState(() {
+//      post = json.decode(results[0].body);
+//      comments = json.decode(results[1].body);
+//      _showLoading = false;
+//    });
+
+    final jsonData = jsonDecode(results[0].body);
+    final jsonData1 = jsonDecode(results[1].body);
     List<User> users = [];
-    for (var i in jsonData) {
-      User user = User(i["userId"].toString(),i["name"].toString(), i["username"].toString(),i["body"].toString());
+    for (var i in jsonData1) {
+      User user = User(i["name"].toString(), i["username"].toString(),i["body"].toString());
       users.add(user);
+
+     // Post post = Post(i['userId'].toString(),i['id'].toString(),i['body'].toString());
     }
     print(users.length);
     return users;
   }
-
+//  @override
+//  void initState() {
+//    super.initState();
+//
+//    getUserData();
+//  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,10 +58,11 @@ class _ShowApiDataState extends State<ShowApiData> {
       child: FutureBuilder (
         future: getUserData(),
         builder: (context,  AsyncSnapshot<List<User>> snap) {
+         // List<Post> posts = snap.data;
           if (snap.data == null) {
             return Container(
               child: Center(
-                child: CircularProgressIndicator(),
+                child:CupertinoActivityIndicator(animating: true),
               ),
             );
           } else {
@@ -120,7 +149,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
-                                  child: Text('${snap.data[index].userId} \n ${snap.data[index].body}' ),
+                                  child: Text(snap.data[index].body  ),
                                 ),
                               ],
                             ),
@@ -187,9 +216,12 @@ class _ShowApiDataState extends State<ShowApiData> {
 }
 
 class User {
-  final String userId, name, username, body;
+  final String  name, username,body;
 
-  User(this.userId, this.name, this.username, this.body);
+  User( this.name, this.username,this.body);
+//  final String userId, name, username, body;
+//
+//  User(this.userId, this.name, this.username, this.body);
 
 //  factory User.fromJson(Map<String, dynamic> json) {
 //    List<Post> tempUsers = [];
@@ -203,31 +235,15 @@ class User {
 class Post {
   final String userId;
   final String id;
-  final String title;
   final String body;
 
-  Post({this.userId, this.id, this.title, this.body});
+  Post({this.userId, this.id, this.body});
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
       userId: json['userId'].toString(),
       id: json['id'].toString(),
-      title: json['title'].toString(),
       body: json['body'].toString(),
     );
   }
 }
-//class Users {
-//  final List<Post> users;
-//
-//  Users({this.users});
-//
-//  factory Users.fromJson(Map<String, dynamic> json) {
-//    List<Post> tempUsers = [];
-//    for (int i = 0; i < json['users'].length; i++) {
-//      Post post = Post.fromJson(json['users'][i]);
-//      tempUsers.add(post);
-//    }
-//    return Users(users: tempUsers);
-//  }
-//}
