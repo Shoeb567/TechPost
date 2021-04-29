@@ -2,6 +2,9 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import "package:http/http.dart" as http;
+import 'package:tech_post_app/class_model/post_model.dart';
+import 'package:tech_post_app/class_model/postwithusername_model.dart';
+import 'package:tech_post_app/class_model/user_model.dart';
 import 'package:tech_post_app/imagefile.dart';
 
 class ShowApiData extends StatefulWidget {
@@ -30,9 +33,9 @@ class _ShowApiDataState extends State<ShowApiData> {
   Future<List<Post>> fetchPost() async {
     try {
       final response =
-          await http.get('http://jsonplaceholder.typicode.com/posts');
+          await http.get('https://jsonplaceholder.typicode.com/posts');
       if (response.statusCode == 200) {
-        final List<Post> posts = postFromJson(response.body);
+        final List<Post> posts = Post.postFromJson(response.body);
         return posts;
       } else {
         throw Exception('Can;t Find Data');
@@ -228,60 +231,6 @@ class _ShowApiDataState extends State<ShowApiData> {
   }
 }
 
-class User {
-  User({
-    this.id,
-    this.name,
-    this.username,
-  });
 
-  String id;
-  String name;
-  String username;
 
-  factory User.fromJson(dynamic json) {
-    return User(
-        id : json['id'].toString() ,
-        name : json['name'] .toString(),
-        username:json['username'] .toString());
-  }
-  @override
-  String toString() {
-    return '{ ${this.id}, ${this.name}, ${this.username} }';
-  }
-}
 
-//List<Post> postFromJson(String str) => List<Post>.from(json.decode(str).map((x) => Post.fromJson(x)));
-List<Post> postFromJson(String str) {
-  final jsonData = json.decode(str);
-  return  List<Post>.from(jsonData.map((x) => Post.fromJson(x)));
-}
-class Post {
-
-  String id;
-  String userId;
-  String body;
-  Post({
-    this.id,
-    this.userId,
-    this.body,
-  });
-  factory Post.fromJson(Map<String,dynamic> json) {
-    return Post(
-        id : json['id'].toString() ,
-        userId : json['userId'] .toString(),
-        body:json['body'] .toString());
-  }
-  @override
-  String toString() {
-    return '{ ${this.id}, ${this.userId}, ${this.body} }';
-  }
-}
-
-class PostWithUsername {
-  final String name;
-  final String username;
-  final String body;
-
-  PostWithUsername(this.name, this.username, this.body);
-}
