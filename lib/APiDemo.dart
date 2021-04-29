@@ -1,121 +1,114 @@
+//import 'package:flutter/material.dart';
 //import 'dart:convert';
-//
-//import 'package:flutter/cupertino.dart';
 //import 'package:http/http.dart' as http;
 //
+//void main() => runApp(MyAppDemo1());
 //
-//class HomePage extends StatefulWidget {
+//class MyAppDemo1 extends StatelessWidget {
 //  @override
-//  _HomePageState createState() => _HomePageState();
+//  Widget build(BuildContext context) {
+//    return MaterialApp(
+//        home: Scaffold(
+//          body: Center(
+//              child: JSONListView()
+//          ),
+//        ));
+//  }
 //}
 //
-//class _HomePageState extends State<HomePage> {
+//class GetUsers {
+//  String id;
+//  String name;
+//  String email;
+//  String phoneNumber;
 //
-//  Map<String, dynamic> post;
-//  List<dynamic> comments=[];
+//  GetUsers({
+//    this.id,
+//    this.name,
+//    this.email,
+//    this.phoneNumber
+//  });
 //
-//  bool _showLoading = true;
-//  bool _showComments = true;
-//
-//  @override
-//  void initState() {
-//    super.initState();
-//
-//    _fetchData();
+//  factory GetUsers.fromJson(Map<String, dynamic> json) {
+//    return GetUsers(
+//        id: json['id'].toString(),
+//        name: json['name'].toString(),
+//        email: json['email'].toString(),
+//        phoneNumber: json['phone'].toString()
+//    );
 //  }
+//}
 //
-//  Future<String> _futureError() async {
-//  //  throw new Exception('my error');
-//    return 'result';
-//  }
+//class JSONListView extends StatefulWidget {
+//  CustomJSONListView createState() => CustomJSONListView();
+//}
 //
-//  Future _fetchData() async {
-//    setState(() { _showLoading = true; });
+//class CustomJSONListView extends State {
 //
-//    final results = await Future.wait([
-//      http.get('http://jsonplaceholder.typicode.com/posts/1'),
-//      http.get('http://jsonplaceholder.typicode.com/users?userId=1'),
+//  final String apiURL = 'https://jsonplaceholder.typicode.com/users';
 //
-//      _futureError().catchError((e) {
-//        return 'error';
-//      }),
-//    ]);
+//  Future<List<GetUsers>> fetchJSONData() async {
 //
-//    print(results[0]);
-//    print(results[1]);
+//    var jsonResponse = await http.get(apiURL);
 //
-////
-////     setState(() {
-////       post = json.decode(results[0].toString());
-////       comments = json.decode(results[1].toString());
-////
-////     });
-//     setState(() {
-//       _showLoading = false;
-//     });
+//    if (jsonResponse.statusCode == 200) {
+//
+//      final jsonItems = json.decode(jsonResponse.body);
+//
+//      List<GetUsers> usersList = jsonItems.map<GetUsers>((json) {
+//        return GetUsers.fromJson(json);
+//      }).toList();
+//
+//      return usersList;
+//
+//    } else {
+//      throw Exception('Failed to load data from internet');
+//    }
 //  }
 //
 //  @override
 //  Widget build(BuildContext context) {
-//    return CupertinoPageScaffold(
-//      navigationBar: CupertinoNavigationBar(
-//        middle: Text("JSON Placeholder Blog post"),
+//    return Scaffold(
+//      appBar: AppBar(
+//        title: Text('JSON ListView in Flutter'),
 //      ),
-//      child: SingleChildScrollView(
-//        child: Padding(
-//          padding: EdgeInsets.all(12.0),
-//          child: Column(
-//            crossAxisAlignment: CrossAxisAlignment.start,
-//            children: [
-//              Container(height: 70),
-//              if (_showLoading)
-//                Center(child: CupertinoActivityIndicator(animating: true)),
+//      body: FutureBuilder<List<GetUsers>>(
+//        future: fetchJSONData(),
+//        builder: (context, snapshot) {
 //
-//              if (!_showLoading) ... [
-//                Text(post['title'].toString(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
+//          if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
 //
-//                SizedBox(height: 10),
-//
-//                _showCommentsToggle(),
-//
-//                SizedBox(height: 10),
-//
-//                if (!_showComments)
-//                  Text(post['body'].toString(), style: TextStyle(fontSize: 14)),
-//
-//                if (_showComments)
-//                  ..._commentList()
-//              ]
-//            ],
-//          ),
-//        ),
+//          return ListView(
+//            children: snapshot.data
+//                .map((user) => ListTile(
+//              title: Text(user.name),
+//              onTap: (){ print(user.name); },
+//              subtitle: Text(user.phoneNumber),
+//              leading: CircleAvatar(
+//                backgroundColor: Colors.green,
+//                child: Text(user.name[0],
+//                    style: TextStyle(
+//                      color: Colors.white,
+//                      fontSize: 20.0,
+//                    )),
+//              ),
+//            ),
+//            )
+//                .toList(),
+//          );
+//        },
 //      ),
 //    );
 //  }
+//}
 //
-//  _showCommentsToggle() {
-//    return Row(
-//      children: [
-//        Text('Show comments', style: TextStyle(fontWeight: FontWeight.bold),),
-//        GestureDetector(
-//          child: CupertinoSwitch(
-//            value: _showComments,
-//            onChanged: (bool value) { setState(() { _showComments = value; }); },
-//          ),
-//          onTap: () { setState(() { _showComments = !_showComments; }); },
-//        ),
-//      ],
-//    );
-//  }
-//
-//  _commentList() {
-//    return comments.map((comment) => Column(
-//      crossAxisAlignment: CrossAxisAlignment.start,
-//      children: [
-//        Text(comment['email'].toString(), style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
-//        Text(comment['body'].toString(),  style: TextStyle(fontSize: 14)),
-//        SizedBox(height: 15)
-//      ],
-//    )).toList();
-//  }
+//factory Post.fromJson(Map<String,dynamic json) {
+//return Post(
+//id : json['id'].toString() ,
+//userId : json['userId'] .toString(),
+//body:json['body'] .toString());
+//}
+//@override
+//String toString() {
+//  return '{ ${this.id}, ${this.userId}, ${this.body} }';
 //}

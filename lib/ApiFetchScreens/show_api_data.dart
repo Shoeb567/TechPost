@@ -5,70 +5,81 @@ import "package:http/http.dart" as http;
 import 'package:tech_post_app/imagefile.dart';
 
 class ShowApiData extends StatefulWidget {
+  final Future<User> users;
+
+  ShowApiData({Key key, this.users}) : super(key: key);
+
   @override
   _ShowApiDataState createState() => _ShowApiDataState();
 }
 
 class _ShowApiDataState extends State<ShowApiData> {
-  Map<String,dynamic> post;
-  List<dynamic> userList ;
-  Future<List<User>> getUserData() async {
-    final results = await Future.wait([
-      http.get('http://jsonplaceholder.typicode.com/users?id'),
-      http.get('http://jsonplaceholder.typicode.com/posts')
-    ]);
-
-   // final results = await http.get('http://jsonplaceholder.typicode.com/users');
-      //http.get('http://jsonplaceholder.typicode.com/users?userId=1'),
-
-//    final results = await http.get(
-//  'http://jsonplaceholder.typicode.com/users');
-//    final userapi = await http.get(
-//        http.get('http://jsonplaceholder.typicode.com/users?userId=1'));
-////    final response =
-////        await http.get("https://jsonplaceholder.typicode.com/posts");
-////    setState(() {
-//      post = json.decode(results[0].body);
-//      comments = json.decode(results[1].body);
-//      _showLoading = false;
-//    });
-
-    final jsonData = jsonDecode(results[0].body);
-    final jsonData1 = jsonDecode(results[1].body);
-    List<User> users = [];
-    for (var i in jsonData1) {
-      User user = User(i["name"].toString(), i["username"].toString(),i["body"].toString());
-      users.add(user);
-
-     // Post post = Post(i['userId'].toString(),i['id'].toString(),i['body'].toString());
+  Future<User> fetchUsers(String id) async {
+    var response =
+        await http.get('https://jsonplaceholder.typicode.com/users/$id');
+    User user;
+    if (response.statusCode == 200) {
+       final jsonResponse = json.decode(response.body);
+        user = User.fromJson(jsonResponse);
+    } else {
+      print('Can;t Find Data');
     }
-    print(users.length);
-    return users;
+     return user;
   }
-//  @override
-//  void initState() {
-//    super.initState();
-//
-//    getUserData();
-//  }
+
+  Future<List<Post>> fetchPost() async {
+    try {
+      final response =
+          await http.get('http://jsonplaceholder.typicode.com/posts');
+      if (response.statusCode == 200) {
+        final List<Post> posts = postFromJson(response.body);
+        return posts;
+      } else {
+        throw Exception('Can;t Find Data');
+      }
+    } catch (e) {
+      return List<Post>();
+    }
+  }
+  Future<List<PostWithUsername>> getAllPostWithUserName() async {
+    print('===');
+    List<PostWithUsername> listOfPostWithUserName = [];
+    final List<Post> listOfPosts = await fetchPost();
+    for (final postList in listOfPosts) {
+      User userName = await fetchUsers(postList.userId);
+      print('==>List Start::${listOfPostWithUserName.length}');
+      listOfPostWithUserName.add(
+          PostWithUsername(userName.name, userName.username, postList.body));
+    }
+    print('==>listOfPostWithUserName::${listOfPostWithUserName.length}');
+    return listOfPostWithUserName;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // fetchUsers(toString());
+    // fetchPost();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: FutureBuilder (
-        future: getUserData(),
-        builder: (context,  AsyncSnapshot<List<User>> snap) {
-         // List<Post> posts = snap.data;
+      child: FutureBuilder(
+        future: getAllPostWithUserName(),
+        builder: (context, AsyncSnapshot<List<PostWithUsername>> snap) {
           if (snap.data == null) {
             return Container(
               child: Center(
-                child:CupertinoActivityIndicator(animating: true),
+                child: CupertinoActivityIndicator(animating: true),
               ),
             );
           } else {
-            return ListView.builder (
+            return ListView.builder(
               itemCount: snap.data.length,
-              itemBuilder: (BuildContext context, int index) {
+              itemBuilder: (BuildContext context, index) {
+                //  PostWithUsername user = listOfPostWithUserName[index];
                 String oneChar = snap.data[index].name
                     .toString()
                     .substring(0, 1)
@@ -107,7 +118,8 @@ class _ShowApiDataState extends State<ShowApiData> {
                                 ),
                                 Text(
                                   '  Twitter Home',
-                                  style: TextStyle(fontSize: 10,
+                                  style: TextStyle(
+                                    fontSize: 10,
                                     color: Color.fromRGBO(104, 118, 132, 1),
                                   ),
                                 )
@@ -132,7 +144,8 @@ class _ShowApiDataState extends State<ShowApiData> {
                                 Expanded(
                                   child: Text(
                                     '${snap.data[index].username} - 10h',
-                                    style: TextStyle(fontSize: 14,
+                                    style: TextStyle(
+                                      fontSize: 14,
                                       color: Color.fromRGBO(104, 118, 132, 1),
                                     ),
                                   ),
@@ -149,7 +162,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
-                                  child: Text(snap.data[index].body  ),
+                                  child: Text('${snap.data[index].body}'),
                                 ),
                               ],
                             ),
@@ -216,34 +229,74 @@ class _ShowApiDataState extends State<ShowApiData> {
 }
 
 class User {
-  final String  name, username,body;
+  User({
+    this.id,
+    this.name,
+    this.username,
+  });
 
-  User( this.name, this.username,this.body);
-//  final String userId, name, username, body;
-//
-//  User(this.userId, this.name, this.username, this.body);
+  String id;
+  String name;
+  String username;
 
-//  factory User.fromJson(Map<String, dynamic> json) {
-//    List<Post> tempUsers = [];
-//    for (int i = 0; i < json['users'].length; i++) {
-//      Post post = Post.fromJson(json['users'][i]);
-//      tempUsers.add(post);
-//    }
-//    return User();
-  //}
+  factory User.fromJson(dynamic json) {
+    return User(
+        id : json['id'].toString() ,
+        name : json['name'] .toString(),
+        username:json['username'] .toString());
+  }
+  @override
+  String toString() {
+    return '{ ${this.id}, ${this.name}, ${this.username} }';
+  }
 }
+
+//List<Post> postFromJson(String str) => List<Post>.from(json.decode(str).map((x) => Post.fromJson(x)));
+List<Post> postFromJson(String str) {
+  final jsonData = json.decode(str);
+  return  List<Post>.from(jsonData.map((x) => Post.fromJson(x)));
+}
+//String postToJson(List<Post> data) =>
+//    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 class Post {
-  final String userId;
-  final String id;
+
+  String id;
+  String userId;
+  String body;
+  Post({
+    this.id,
+    this.userId,
+    this.body,
+  });
+
+
+  factory Post.fromJson(Map<String,dynamic> json) {
+    return Post(
+        id : json['id'].toString() ,
+        userId : json['userId'] .toString(),
+        body:json['body'] .toString());
+  }
+  @override
+  String toString() {
+    return '{ ${this.id}, ${this.userId}, ${this.body} }';
+  }
+//  factory Post.fromJson(Map<String, dynamic> json) => Post(
+//        id: json["id"].toString(),
+//        userId: json["userId"].toString(),
+//        body: json["body"].toString(),);
+
+
+//  Map<String, dynamic> toJson() => {
+//        "id": id,
+//        "userId": userId,
+//        "body": body,
+//      };
+}
+
+class PostWithUsername {
+  final String name;
+  final String username;
   final String body;
 
-  Post({this.userId, this.id, this.body});
-
-  factory Post.fromJson(Map<String, dynamic> json) {
-    return Post(
-      userId: json['userId'].toString(),
-      id: json['id'].toString(),
-      body: json['body'].toString(),
-    );
-  }
+  PostWithUsername(this.name, this.username, this.body);
 }

@@ -37,10 +37,8 @@ class _TwiterHomeState extends State<TwiterHome> {
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
             BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.notifications_none), label: ""),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.markunread_outlined), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.notifications_none), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.markunread_outlined), label: ""),
           ],
         ),
         body: Container(child:ShowApiData()),
