@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
-import 'package:tech_post_app/ApiFetchScreens/twitter_home.dart';
+import 'package:tech_post_app/api_fetchscreens/twitter_home.dart';
+
 void main() {
   runApp(MyApp());
 }

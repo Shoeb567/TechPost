@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
-import 'package:tech_post_app/ApiFetchScreens/show_api_data.dart';
+import 'package:tech_post_app/api_fetchscreens/show_api_data.dart';
+
 import "package:tech_post_app/imagefile.dart";
 
 
