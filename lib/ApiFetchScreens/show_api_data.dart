@@ -256,8 +256,6 @@ List<Post> postFromJson(String str) {
   final jsonData = json.decode(str);
   return  List<Post>.from(jsonData.map((x) => Post.fromJson(x)));
 }
-//String postToJson(List<Post> data) =>
-//    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 class Post {
 
   String id;
@@ -268,8 +266,6 @@ class Post {
     this.userId,
     this.body,
   });
-
-
   factory Post.fromJson(Map<String,dynamic> json) {
     return Post(
         id : json['id'].toString() ,
@@ -280,17 +276,6 @@ class Post {
   String toString() {
     return '{ ${this.id}, ${this.userId}, ${this.body} }';
   }
-//  factory Post.fromJson(Map<String, dynamic> json) => Post(
-//        id: json["id"].toString(),
-//        userId: json["userId"].toString(),
-//        body: json["body"].toString(),);
-
-
-//  Map<String, dynamic> toJson() => {
-//        "id": id,
-//        "userId": userId,
-//        "body": body,
-//      };
 }
 
 class PostWithUsername {
