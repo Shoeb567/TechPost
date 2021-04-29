@@ -1,7 +1,7 @@
 
 import 'dart:convert';
 
-class Post {
+class Post  {
   String id;
   String userId;
   String body;
