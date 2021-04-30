@@ -13,7 +13,6 @@ class ApiServices extends ChangeNotifier{
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
       user = User.fromJson(jsonResponse);
-      notifyListeners();
     } else {
       print('Can;t Find Data');
     }
@@ -29,7 +28,6 @@ class ApiServices extends ChangeNotifier{
       if (response.statusCode == 200) {
         posts = Post.postFromJson(response.body);
         print('Post data:${posts.length}');
-        notifyListeners();
         return posts;
       } else {
         throw Exception('Can;t Find Data');
