@@ -1,78 +1,44 @@
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
-import "package:http/http.dart" as http;
-import 'package:tech_post_app/class_model/post_model.dart';
-import 'package:tech_post_app/class_model/postwithusername_model.dart';
-import 'package:tech_post_app/class_model/user_model.dart';
+import 'package:provider/provider.dart';
 import 'package:tech_post_app/imagefile.dart';
+import 'package:tech_post_app/providers/provider_file.dart';
 
+class TwitterApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<Provider_File>(
+      create: (BuildContext context) {
+        print('Provider call');
+        return Provider_File();
+      },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: ShowApiData(),
+      ),
+    );
+  }
+}
 class ShowApiData extends StatefulWidget {
-  final Future<User> users;
-
-  ShowApiData({Key key, this.users}) : super(key: key);
-
   @override
   _ShowApiDataState createState() => _ShowApiDataState();
 }
 
 class _ShowApiDataState extends State<ShowApiData> {
-  Future<User> fetchUsers(String id) async {
-    var response =
-        await http.get('https://jsonplaceholder.typicode.com/users/$id');
-    User user;
-    if (response.statusCode == 200) {
-       final jsonResponse = json.decode(response.body);
-        user = User.fromJson(jsonResponse);
-    } else {
-      print('Can;t Find Data');
-    }
-     return user;
-  }
-
-  Future<List<Post>> fetchPost() async {
-    try {
-      final response =
-          await http.get('https://jsonplaceholder.typicode.com/posts');
-      if (response.statusCode == 200) {
-        final List<Post> posts = Post.postFromJson(response.body);
-        return posts;
-      } else {
-        throw Exception('Can;t Find Data');
-      }
-    } catch (e) {
-      return List<Post>();
-    }
-  }
-  Future<List<PostWithUsername>> getAllPostWithUserName() async {
-    print('===');
-    List<PostWithUsername> listOfPostWithUserName = [];
-    final List<Post> listOfPosts = await fetchPost();
-    for (final postList in listOfPosts) {
-      User userName = await fetchUsers(postList.userId);
-      print('==>List Start::${listOfPostWithUserName.length}');
-      listOfPostWithUserName.add(
-          PostWithUsername(userName.name, userName.username, postList.body));
-    }
-    print('==>listOfPostWithUserName::${listOfPostWithUserName.length}');
-    return listOfPostWithUserName;
-  }
-
   @override
   void initState() {
     super.initState();
     // fetchUsers(toString());
     // fetchPost();
   }
-
   @override
   Widget build(BuildContext context) {
+   final _model = Provider.of<Provider_File>(context);
     return Container(
       color: Colors.white,
-      child: FutureBuilder(
-        future: getAllPostWithUserName(),
-        builder: (context, AsyncSnapshot<List<PostWithUsername>> snap) {
-          if (snap.data == null) {
+      child: Consumer<Provider_File>(
+        builder: (context, snap,_) {
+          if (snap.mainList.isEmpty == null) {
             return Container(
               child: Center(
                 child: CupertinoActivityIndicator(animating: true),
@@ -80,13 +46,10 @@ class _ShowApiDataState extends State<ShowApiData> {
             );
           } else {
             return ListView.builder(
-              itemCount: snap.data.length,
+              itemCount: _model.mainList.length,
               itemBuilder: (BuildContext context, index) {
-                //  PostWithUsername user = listOfPostWithUserName[index];
-                String oneChar = snap.data[index].name
-                    .toString()
-                    .substring(0, 1)
-                    .toUpperCase();
+                String oneChar =
+                    _model.mainList[index].name.substring(0, 1).toUpperCase();
                 return Column(
                   children: [
                     Container(
@@ -132,7 +95,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                             Row(
                               children: [
                                 Text(
-                                  ' ${snap.data[index].name}',
+                                  ' ${_model.mainList[index].name}',
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                                 Icon(Icons.verified,
@@ -146,7 +109,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                                 ),
                                 Expanded(
                                   child: Text(
-                                    '${snap.data[index].username} - 10h',
+                                    '${_model.mainList[index].username} - 10h',
                                     style: TextStyle(
                                       fontSize: 14,
                                       color: Color.fromRGBO(104, 118, 132, 1),
@@ -165,7 +128,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
-                                  child: Text('${snap.data[index].body}'),
+                                  child: Text('${_model.mainList[index].body}'),
                                 ),
                               ],
                             ),
@@ -230,7 +193,3 @@ class _ShowApiDataState extends State<ShowApiData> {
     );
   }
 }
-
-
-
-

@@ -1,7 +1,8 @@
 
 import 'dart:convert';
 
-class Post  {
+class Post{
+   List<Post> mainList = [];
   String id;
   String userId;
   String body;
@@ -9,6 +10,7 @@ class Post  {
     this.id,
     this.userId,
     this.body,
+    fetchPost()
   });
 
   factory Post.fromJson(Map<String,dynamic> json) {
@@ -23,7 +25,7 @@ class Post  {
   }
   static List<Post> postFromJson(String str) {
     final jsonData = json.decode(str);
-    return (jsonData as List<dynamic>).map((e) => Post.fromJson(e as Map<String,dynamic>)).toList();
-
+    return (jsonData as List<dynamic>).map((e) =>
+        Post.fromJson(e as Map<String, dynamic>)).toList();
   }
 }

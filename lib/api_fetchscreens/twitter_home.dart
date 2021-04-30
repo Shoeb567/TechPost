@@ -1,10 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import 'package:tech_post_app/api_fetchscreens/show_api_data.dart';
-
 import "package:tech_post_app/imagefile.dart";
-
-
 class TwiterHome extends StatefulWidget {
   @override
   _TwiterHomeState createState() => _TwiterHomeState();
@@ -43,7 +40,7 @@ class _TwiterHomeState extends State<TwiterHome> {
             BottomNavigationBarItem(icon: Icon(Icons.markunread_outlined), label: ""),
           ],
         ),
-        body: Container(child:ShowApiData()),
+        body: Container(child:TwitterApp()),
         floatingActionButton: FloatingActionButton(
           elevation: 0.0,
           onPressed: () {},
