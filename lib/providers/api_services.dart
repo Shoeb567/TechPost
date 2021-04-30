@@ -4,14 +4,14 @@ import 'package:tech_post_app/class_model/post_model.dart';
 import 'package:tech_post_app/class_model/postwithusername_model.dart';
 import 'package:tech_post_app/class_model/user_model.dart';
 import "package:http/http.dart" as http;
-class Provider_File extends ChangeNotifier{
-  List<PostWithUsername> mainList = [];
+class ApiServices extends ChangeNotifier{
+  List<PostWithUsername> postWithUsernameList = [];
   Provider_File(){
     getAllPostWithUserName();
   }
-    Future<User> fetchUsers(String id) async {
+  Future<User> fetchUsers(String id) async {
     var response =
-        await http.get('https://jsonplaceholder.typicode.com/users/$id');
+    await http.get('https://jsonplaceholder.typicode.com/users/$id');
     User user;
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
@@ -28,7 +28,7 @@ class Provider_File extends ChangeNotifier{
     List<Post> posts = List<Post>();
     try {
       final response =
-          await http.get('https://jsonplaceholder.typicode.com/posts');
+      await http.get('https://jsonplaceholder.typicode.com/posts');
       if (response.statusCode == 200) {
         posts = Post.postFromJson(response.body);
         print('Post data:${posts.length}');
@@ -51,10 +51,10 @@ class Provider_File extends ChangeNotifier{
       print('==>List Start::${listOfPostWithUserName.length}');
       listOfPostWithUserName.add(
           PostWithUsername(userName.name, userName.username, postList.body));
-      mainList = listOfPostWithUserName.toList();
+      postWithUsernameList = listOfPostWithUserName.toList();
     }
     print('==>listOfPostWithUserName::${listOfPostWithUserName.length}');
     notifyListeners();
-    return mainList;
+    return postWithUsernameList;
   }
 }

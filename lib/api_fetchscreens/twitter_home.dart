@@ -1,7 +1,4 @@
-import "package:flutter/material.dart";
-import "package:flutter/services.dart";
-import 'package:tech_post_app/api_fetchscreens/show_api_data.dart';
-import "package:tech_post_app/imagefile.dart";
+import 'package:tech_post_app/getAll_projectfile.dart';
 class TwiterHome extends StatefulWidget {
   @override
   _TwiterHomeState createState() => _TwiterHomeState();
