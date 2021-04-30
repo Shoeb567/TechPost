@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tech_post_app/getAll_projectfile.dart';
+
+
 class TwitterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,8 @@ class _ShowApiDataState extends State<ShowApiData> {
   }
   @override
   Widget build(BuildContext context) {
-   final viewModel = Provider.of<ApiServices>(context);
+   final _model = Provider.of<ApiServices>(context);
+    //print('ViewModel:${_model.id}');
     return Container(
       color: Colors.white,
       child: Consumer<ApiServices>(
@@ -42,10 +45,13 @@ class _ShowApiDataState extends State<ShowApiData> {
             );
           } else {
             return ListView.builder(
-              itemCount: viewModel.postWithUsernameList.length,
+              itemCount: _model.postWithUsernameList.length,
               itemBuilder: (BuildContext context, index) {
+                // print('==>MainList::${_model.mainList.length}');
+                //print('ListView');
+                //  PostWithUsername user = listOfPostWithUserName[index];
                 String oneChar =
-                viewModel.postWithUsernameList[index].name.substring(0, 1).toUpperCase();
+                    _model.postWithUsernameList[index].name.substring(0, 1).toUpperCase();
                 return Column(
                   children: [
                     Container(
@@ -91,7 +97,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                             Row(
                               children: [
                                 Text(
-                                  ' ${viewModel.postWithUsernameList[index].name}',
+                                  ' ${_model.postWithUsernameList[index].name}',
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                                 Icon(Icons.verified,
@@ -105,7 +111,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                                 ),
                                 Expanded(
                                   child: Text(
-                                    '${viewModel.postWithUsernameList[index].username} - 10h',
+                                    '${_model.postWithUsernameList[index].username} - 10h',
                                     style: TextStyle(
                                       fontSize: 14,
                                       color: Color.fromRGBO(104, 118, 132, 1),
@@ -124,7 +130,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
-                                  child: Text('${viewModel.postWithUsernameList[index].body}'),
+                                  child: Text('${_model.postWithUsernameList[index].body}'),
                                 ),
                               ],
                             ),

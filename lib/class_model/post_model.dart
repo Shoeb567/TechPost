@@ -25,7 +25,9 @@ class Post{
   }
   static List<Post> postFromJson(String str) {
     final jsonData = json.decode(str);
-    return (jsonData as List<dynamic>).map((e) =>
-        Post.fromJson(e as Map<String, dynamic>)).toList();
+    return (jsonData as List<dynamic>).map((e) => Post.fromJson(e as Map<String,dynamic>)).toList();
+
   }
+
+
 }

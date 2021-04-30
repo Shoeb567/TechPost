@@ -1,12 +1,9 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
-import 'package:tech_post_app/class_model/post_model.dart';
-import 'package:tech_post_app/class_model/postwithusername_model.dart';
-import 'package:tech_post_app/class_model/user_model.dart';
+import 'package:tech_post_app/getAll_projectfile.dart';
 import "package:http/http.dart" as http;
 class ApiServices extends ChangeNotifier{
   List<PostWithUsername> postWithUsernameList = [];
-  Provider_File(){
+  ApiServices(){
     getAllPostWithUserName();
   }
   Future<User> fetchUsers(String id) async {
