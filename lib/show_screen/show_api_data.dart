@@ -31,7 +31,7 @@ class _ShowApiDataState extends State<ShowApiData> {
   }
   @override
   Widget build(BuildContext context) {
-   final _model = Provider.of<ApiServices>(context);
+    final _model = Provider.of<ApiServices>(context);
     //print('ViewModel:${_model.id}');
     return Container(
       color: Colors.white,
@@ -51,7 +51,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                 //print('ListView');
                 //  PostWithUsername user = listOfPostWithUserName[index];
                 String oneChar =
-                    _model.postWithUsernameList[index].name.substring(0, 1).toUpperCase();
+                _model.postWithUsernameList[index].name.substring(0, 1).toUpperCase();
                 return Column(
                   children: [
                     Container(

@@ -4,6 +4,7 @@ import "package:http/http.dart" as http;
 class ApiServices extends ChangeNotifier{
   List<PostWithUsername> postWithUsernameList = [];
   ApiServices(){
+
     getAllPostWithUserName();
   }
   Future<User> fetchUsers(String id) async {
@@ -53,4 +54,5 @@ class ApiServices extends ChangeNotifier{
 
     return postWithUsernameList;
   }
+
 }
