@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tech_post_app/getAll_projectfile.dart';
-
-
+//import 'package:like_button/like_button.dart';
 class TwitterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -17,26 +16,26 @@ class TwitterApp extends StatelessWidget {
     );
   }
 }
+
 class ShowApiData extends StatefulWidget {
   @override
   _ShowApiDataState createState() => _ShowApiDataState();
 }
 
 class _ShowApiDataState extends State<ShowApiData> {
-  @override
-  void initState() {
-    super.initState();
-    // fetchUsers(toString());
-    // fetchPost();
-  }
+//  @override
+//  void initState() {
+//    super.initState();
+//    // fetchUsers(toString());
+//    // fetchPost();
+//  }
   @override
   Widget build(BuildContext context) {
     final _model = Provider.of<ApiServices>(context);
-    //print('ViewModel:${_model.id}');
     return Container(
       color: Colors.white,
       child: Consumer<ApiServices>(
-        builder: (context, snap,_) {
+        builder: (context, snap, _) {
           if (snap.postWithUsernameList.isEmpty == null) {
             return Container(
               child: Center(
@@ -47,11 +46,9 @@ class _ShowApiDataState extends State<ShowApiData> {
             return ListView.builder(
               itemCount: _model.postWithUsernameList.length,
               itemBuilder: (BuildContext context, index) {
-                // print('==>MainList::${_model.mainList.length}');
-                //print('ListView');
-                //  PostWithUsername user = listOfPostWithUserName[index];
-                String oneChar =
-                _model.postWithUsernameList[index].name.substring(0, 1).toUpperCase();
+                String oneChar = _model.postWithUsernameList[index].name
+                    .substring(0, 1)
+                    .toUpperCase();
                 return Column(
                   children: [
                     Container(
@@ -130,12 +127,14 @@ class _ShowApiDataState extends State<ShowApiData> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
-                                  child: Text('${_model.postWithUsernameList[index].body}'),
+                                  child: Text(
+                                      '${_model.postWithUsernameList[index].body}'),
                                 ),
                               ],
                             ),
                             SizedBox(height: 15),
                             Row(
+                              //    messageEmpty
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
@@ -160,13 +159,28 @@ class _ShowApiDataState extends State<ShowApiData> {
                                   ),
                                 ),
                                 Container(
-                                  width: 50,
-                                  child: FlatButton(
-                                    onPressed: () {},
-                                    child: Image.asset(
-                                      AppAssets.heart_icon,
-                                      color: Color.fromRGBO(104, 118, 132, 1),
+                                  child: IconButton(
+                                    icon: Icon(
+                                     // likedTweet
+                                      _model.postWithUsernameList[index].likeTweet
+                                          ? Icons.favorite
+                                          : Icons.favorite_border,
+                                      color:
+                                      //likedTweet
+                                      _model.postWithUsernameList[index].likeTweet
+                                          ? Colors.red
+                                          : Colors.grey,
+                                      // Icons.favorite,
                                     ),
+                                    iconSize: 20,
+                                    color: Color.fromRGBO(104, 118, 132, 1),
+                                    onPressed: () {
+                                      setState(() {
+                                        _model.postWithUsernameList[index].likeTweet=
+                                            (!_model.postWithUsernameList[index].likeTweet);
+                                        print('Pressed Button');
+                                      });
+                                    },
                                   ),
                                 ),
                                 Container(

@@ -1,11 +1,17 @@
 import 'dart:convert';
+import 'package:tech_post_app/class_model/likeModel.dart';
 import 'package:tech_post_app/getAll_projectfile.dart';
 import "package:http/http.dart" as http;
 class ApiServices extends ChangeNotifier{
-  List<PostWithUsername> postWithUsernameList = [];
-  ApiServices(){
 
+
+  List<PostWithUsername> postWithUsernameList = [];
+
+  List<LikeDataModel> likeTweet = [];
+
+  ApiServices(){
     getAllPostWithUserName();
+   // likeTweet.clear();
   }
   Future<User> fetchUsers(String id) async {
     var response =
@@ -22,20 +28,26 @@ class ApiServices extends ChangeNotifier{
 
   Future<List<Post>> fetchPost() async {
     print('Fetch Post');
-    List<Post> posts = List<Post>();
-    try {
       final response =
       await http.get('https://jsonplaceholder.typicode.com/posts');
       if (response.statusCode == 200) {
-        posts = Post.postFromJson(response.body);
-        print('Post data:${posts.length}');
-        return posts;
+        return Post.postFromJson(response.body);
       } else {
         throw Exception('Can;t Find Data');
       }
-    } catch (e) {
-      return List<Post>();
+  }
+  Future<LikeDataModel> fetchLike() async {
+   // print('Fetch Like');
+    likeTweet.clear();
+    likeTweet = List<LikeDataModel>();
+    for (int i = 0; i < postWithUsernameList.length; i++) {
+      likeTweet.add(LikeDataModel(
+        likeTweets: false
+      ));
     }
+    print(likeTweet.length);
+   return LikeDataModel(likeTweets: false);
+
   }
 
   Future<List<PostWithUsername>> getAllPostWithUserName() async {
@@ -44,15 +56,13 @@ class ApiServices extends ChangeNotifier{
     final List<Post> listOfPosts = await fetchPost();
     for (final postList in listOfPosts) {
       User userName = await fetchUsers(postList.userId);
-      print('==>List Start::${listOfPostWithUserName.length}');
+      LikeDataModel likeTweetedata = await fetchLike();
       listOfPostWithUserName.add(
-          PostWithUsername(userName.name, userName.username, postList.body));
+          PostWithUsername(userName.name, userName.username, postList.body,likeTweetedata.likeTweets));
       postWithUsernameList = listOfPostWithUserName.toList();
-      notifyListeners();
-    }
-    print('==>listOfPostWithUserName::${listOfPostWithUserName.length}');
-
+        notifyListeners();
+      }
+    print('==>listOfPostWithUserName::${postWithUsernameList.length}');
     return postWithUsernameList;
   }
-
 }

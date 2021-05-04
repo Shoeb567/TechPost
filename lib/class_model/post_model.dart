@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 class Post{
-   List<Post> mainList = [];
+ //  List<Post> mainList = [];
   String id;
   String userId;
   String body;
