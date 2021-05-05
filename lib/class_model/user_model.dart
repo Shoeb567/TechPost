@@ -9,6 +9,7 @@ class User {
   String name;
   String username;
 
+
   factory User.fromJson(dynamic json) {
     return User(
         id : json['id'].toString() ,
