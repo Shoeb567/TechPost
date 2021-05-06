@@ -10,7 +10,7 @@ class Post{
     this.id,
     this.userId,
     this.body,
-    fetchPost()
+  //  fetchPost()
   });
 
   factory Post.fromJson(Map<String,dynamic> json) {

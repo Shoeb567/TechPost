@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tech_post_app/class_model/postwithusername_model.dart';
 import 'package:tech_post_app/getAll_projectfile.dart';
+
 //import 'package:like_button/like_button.dart';
 class TwitterApp extends StatelessWidget {
   @override
@@ -30,9 +31,7 @@ class _ShowApiDataState extends State<ShowApiData> {
 //    // fetchUsers(toString());
 //    // fetchPost();
 //  }
-
-PostWithUsername obj ;
-List<PostWithUsername> listPost = [];
+  int indexId;
   @override
   Widget build(BuildContext context) {
     final _model = Provider.of<ApiServices>(context);
@@ -165,24 +164,20 @@ List<PostWithUsername> listPost = [];
                                 Container(
                                   child: IconButton(
                                     icon: Icon(
-                                     // likedTweet
                                       _model.postWithUsernameList[index].isLiked
                                           ? Icons.favorite
                                           : Icons.favorite_border,
                                       color:
-                                      //likedTweet
-                                      _model.postWithUsernameList[index].isLiked
-                                          ? Colors.red
-                                          : Colors.grey,
+                                         _model.postWithUsernameList[index].isLiked
+                                              ? Colors.red
+                                              : Colors.grey,
                                       // Icons.favorite,
                                     ),
                                     iconSize: 20,
                                     color: Color.fromRGBO(104, 118, 132, 1),
-                                    onPressed: () async{
-                                      _model.isLikeMethod(
-                                         _model.postWithUsernameList[index].isLiked = ! _model.postWithUsernameList[index].isLiked
-                                       );
-                                       // print('Pressed Button');
+                                    onPressed: () async {
+                                      _model.getLikeTweets(index);
+                                      // print('Pressed Button');
                                     },
                                   ),
                                 ),
