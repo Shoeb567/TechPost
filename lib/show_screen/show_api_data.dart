@@ -176,7 +176,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                                     iconSize: 20,
                                     color: Color.fromRGBO(104, 118, 132, 1),
                                     onPressed: () async {
-                                      _model.getLikeTweets(index);
+                                      _model.onLikeButtonTapped(index);
                                       // print('Pressed Button');
                                     },
                                   ),

@@ -4,7 +4,7 @@ class PostWithUsername {
   final String username;
   final String body;
   final String indexId;
-  bool isLiked   ;
+  bool isLiked;
 
   PostWithUsername(this.name, this.username, this.body,this.indexId,this.isLiked,);
 

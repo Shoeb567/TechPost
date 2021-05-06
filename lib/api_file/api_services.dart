@@ -10,7 +10,7 @@ class ApiServices extends ChangeNotifier {
     //  likeMethod(false);
   }
 
-  Future<User> fetchUsersData(String id) async {
+  Future<User> getUsersData(String id) async {
     var response =
         await http.get('https://jsonplaceholder.typicode.com/users/$id');
     User user;
@@ -23,7 +23,7 @@ class ApiServices extends ChangeNotifier {
     return user;
   }
 
-  Future<List<Post>> fetchPostData() async {
+  Future<List<Post>> getPostData() async {
     final response =
         await http.get('https://jsonplaceholder.typicode.com/posts');
     if (response.statusCode == 200) {
@@ -32,7 +32,7 @@ class ApiServices extends ChangeNotifier {
       throw Exception('Can;t Find Data');
     }
   }
-  getLikeTweets(int index) {
+  onLikeButtonTapped(int index) {
     if(postWithUsernameList[index].isLiked == false){
       print('Like Index No:${ postWithUsernameList[index].indexId }');
       postWithUsernameList[index].isLiked = true;
@@ -47,9 +47,9 @@ class ApiServices extends ChangeNotifier {
   Future<List<PostWithUsername>> getAllPostWithUserName() async {
     print('===');
     List<PostWithUsername> listOfPostWithUserName = [];
-    final List<Post> listOfPosts = await fetchPostData();
+    final List<Post> listOfPosts = await getPostData();
     for (final postList in listOfPosts) {
-      User userName = await fetchUsersData(postList.userId);
+      User userName = await getUsersData(postList.userId);
       print('==>Length Start::${postWithUsernameList.length}');
       listOfPostWithUserName.add(PostWithUsername(
           userName.name, userName.username, postList.body,postList.id, false));
