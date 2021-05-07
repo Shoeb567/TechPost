@@ -95,7 +95,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                                       onTap: () {
                                         print('On Tap');
                                         //   _model.showUsersData(index);
-                                        _model.showUsers(
+                                        _model.onTappedUsersData(
                                           _model
                                               .postWithUsernameList[index].name,
                                           _model.postWithUsernameList[index]

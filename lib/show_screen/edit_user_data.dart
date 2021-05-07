@@ -113,7 +113,7 @@ class _EditUserDataState extends State<EditUserData> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                      _model.showUsers(
+                      _model.onTappedUsersData(
                         editName.text,
                         editUsername.text,
                         editPhone.text,

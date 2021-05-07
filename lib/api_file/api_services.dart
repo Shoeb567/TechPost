@@ -47,7 +47,7 @@ class ApiServices extends ChangeNotifier {
   }
 
 
-  showUsers(String name, String username,String phone,String lat,String lng) async{
+  onTappedUsersData(String name, String username,String phone,String lat,String lng) async{
     print('==>>${onTappedUserList}');
     if(onTappedUserList.isEmpty ){
       print('Add data:${onTappedUserList}');
