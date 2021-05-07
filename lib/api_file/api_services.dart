@@ -62,25 +62,7 @@ class ApiServices extends ChangeNotifier {
     notifyListeners();
   }
 
-//  showUsersData(int index) async{
-//    print('==>>${data}');
-//    User user = await getUsersData(index.toString());
-//    print('User:${user}');
-//    if(data.isEmpty ){
-//      print('Add data:${data}');
-//       data.add(User(name: user.name,username: user.username,phone: user.phone));
-//      print('Data::${data}');
-//      //  data.add(User(name: name,username: username,mobile: mobile));
-//      print('Adter add:${data}');
-//    }
-//    else if(data.isNotEmpty ){
-//      return {{data.clear()}, {data.add(User(name: user.name,username: user.username,phone: user.phone))}};
-//    }
-//    print('Data::${data}');
-//
-//    // postWithUsernameList[index].name;
-//    notifyListeners();
-//  }
+
   Future<List<PostWithUsername>> getAllPostWithUserName() async {
     print('===');
     List<PostWithUsername> listOfPostWithUserName = [];
