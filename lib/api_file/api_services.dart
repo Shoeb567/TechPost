@@ -4,7 +4,7 @@ import "package:http/http.dart" as http;
 
 class ApiServices extends ChangeNotifier {
   List<PostWithUsername> postWithUsernameList = [];
-  List<User> userData = [];
+  List<User> onTappedUserList = [];
 
   ApiServices() {
     getAllPostWithUserName();
@@ -48,14 +48,14 @@ class ApiServices extends ChangeNotifier {
 
 
   showUsers(String name, String username,String phone,String lat,String lng) async{
-    print('==>>${userData}');
-    if(userData.isEmpty ){
-      print('Add data:${userData}');
+    print('==>>${onTappedUserList}');
+    if(onTappedUserList.isEmpty ){
+      print('Add data:${onTappedUserList}');
      //return data.add('$name,$username,$mobile');
-      return  userData.add(User(name: name,username: username,phone:phone));
+      return  onTappedUserList.add(User(name: name,username: username,phone:phone));
    }
-    else if(userData.isNotEmpty ){
-      return {{userData.clear()}, {userData.add(User(name: name,username: username,phone:phone))}};
+    else if(onTappedUserList.isNotEmpty ){
+      return {{onTappedUserList.clear()}, {onTappedUserList.add(User(name: name,username: username,phone:phone))}};
     }
 
    // postWithUsernameList[index].name;

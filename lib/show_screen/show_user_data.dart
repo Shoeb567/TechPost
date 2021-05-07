@@ -50,7 +50,7 @@ class _ShowUserDataState extends State<ShowUserData> {
         child: Consumer<ApiServices>(
           builder: (context, snap, _) {
             return ListView.builder(
-              itemCount: _model.userData.length,
+              itemCount: _model.onTappedUserList.length,
               itemBuilder: (BuildContext context, index) {
                 return Column(
                   children: [
@@ -81,7 +81,7 @@ class _ShowUserDataState extends State<ShowUserData> {
                                     child: ListTile(
                                       //  padding: const EdgeInsets.all(8.0),
                                       title: Text(
-                                        "Name:${_model.userData[index].name}",
+                                        "Name:${_model.onTappedUserList[index].name}",
                                         style: TextStyle(
                                             fontSize: 17,
                                             fontWeight: FontWeight.bold),
@@ -96,7 +96,7 @@ class _ShowUserDataState extends State<ShowUserData> {
                                     child: ListTile(
                                       //  padding: const EdgeInsets.all(8.0),
                                       title: Text(
-                                        "Username: ${_model.userData[index].username}",
+                                        "Username: ${_model.onTappedUserList[index].username}",
                                         style: TextStyle(
                                             fontSize: 17,
                                             fontWeight: FontWeight.bold),
@@ -158,7 +158,7 @@ class _ShowUserDataState extends State<ShowUserData> {
                                     child: ListTile(
                                       //  padding: const EdgeInsets.all(8.0),
                                       title: Text(
-                                        "Mobile No: ${_model.userData[index].phone}",
+                                        "Mobile No: ${_model.onTappedUserList[index].phone}",
                                         style: TextStyle(
                                             fontSize: 17,
                                             fontWeight: FontWeight.bold),

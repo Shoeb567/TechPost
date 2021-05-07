@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:tech_post_app/class_model/postwithusername_model.dart';
 import 'package:tech_post_app/getAll_projectfile.dart';
 import 'package:tech_post_app/show_screen/show_user_data.dart';
 
@@ -192,7 +191,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                                   children: [
                                     Container(
                                       width: 50,
-                                      child: FlatButton(
+                                      child: TextButton(
                                         onPressed: () {},
                                         child: Image.asset(
                                           AppAssets.comment_icon,
@@ -203,7 +202,7 @@ class _ShowApiDataState extends State<ShowApiData> {
                                     ),
                                     Container(
                                       width: 50,
-                                      child: FlatButton(
+                                      child: TextButton(
                                         onPressed: () {},
                                         child: Image.asset(
                                           AppAssets.retweet_icon,
@@ -257,7 +256,7 @@ class _ShowApiDataState extends State<ShowApiData> {
 //                                    ),
                                     Container(
                                       width: 50,
-                                      child: FlatButton(
+                                      child: TextButton(
                                         onPressed: () {
                                           _model.onLikeButtonTapped(index);
                                         },
