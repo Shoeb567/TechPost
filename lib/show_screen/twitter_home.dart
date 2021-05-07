@@ -13,19 +13,10 @@ class _TwiterHomeState extends State<TwiterHome> {
         const SystemUiOverlayStyle(statusBarColor: Colors.black));
     // ignore: file_names
     return Scaffold(
-        appBar: AppBar(
 
-            backgroundColor: Colors.white,
-            elevation: 0.3,
-            title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const CircleAvatar(
-                      backgroundColor: Colors.black,
-                      child: Text("S", style: TextStyle(color: Colors.white))),
-                  Image.asset(AppAssets.logo),
-                  Image.asset(AppAssets.fatureicon),
-                ])),
+        body: Container(
+            child:TwitterApp()
+        ),
         bottomNavigationBar: BottomNavigationBar(
           elevation: 0.3,
           backgroundColor: Colors.white,
@@ -38,7 +29,7 @@ class _TwiterHomeState extends State<TwiterHome> {
             BottomNavigationBarItem(icon: Icon(Icons.markunread_outlined), label: ""),
           ],
         ),
-        body: Container(child:TwitterApp()),
+
         floatingActionButton: FloatingActionButton(
           elevation: 0.0,
           onPressed: () {},

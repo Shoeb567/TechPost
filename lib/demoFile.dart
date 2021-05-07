@@ -1,94 +1,161 @@
 //import 'package:flutter/material.dart';
+//import 'package:tech_post_app/show_screen/edit_user_data.dart';
 //
-//void main() => runApp(new MyApp1());
+//import '../getAll_projectfile.dart';
 //
-//class MyApp1 extends StatelessWidget {
+//class UserData extends StatelessWidget {
 //  @override
 //  Widget build(BuildContext context) {
-//    return new MaterialApp(
-//      theme: new ThemeData(
-//        primarySwatch: Colors.blue,
+//    return ChangeNotifierProvider<ApiServices>(
+//      create: (BuildContext context) {
+//        print('Provider call');
+//        return ApiServices();
+//      },
+//      child: MaterialApp(
+//        debugShowCheckedModeBanner: false,
+//        home: ShowUserData(),
 //      ),
-//      home: new MyHomePage(title: 'ListView Like - Unlike'),
 //    );
 //  }
 //}
-//
-//class MyHomePage extends StatefulWidget {
-//  MyHomePage({Key key, this.title}) : super(key: key);
-//  final String title;
+//class ShowUserData extends StatefulWidget {
 //
 //  @override
-//  _MyHomePageState createState() => new _MyHomePageState();
+//  _ShowUserDataState createState() => _ShowUserDataState();
 //}
 //
-//class _MyHomePageState extends State<MyHomePage> {
-//  List<Item> _itemList;
-//
-//  @override
-//  void initState() {
-//    super.initState();
-//
-//    _itemList = List<Item>();
-//    for (int i = 0; i < 10; i++) {
-//
-//      _itemList.add(Item(
-//        title: 'Item $i',
-//        isFavorite: false,
-//      ));
-//     // print(_itemList.length);
-//    }
-//  }
+//class _ShowUserDataState extends State<ShowUserData> {
 //
 //  @override
 //  Widget build(BuildContext context) {
-//    return new Scaffold(
-//        appBar: new AppBar(
-//          title: new Text(widget.title),
-//        ),
-//        body: new ListView.builder(
-//          itemCount: _itemList.length,
-//          itemBuilder: (context, index) {
-//            return ListItem(
-//              _itemList[index],
-//                  () => onFavoritePressed(index),
-//            );
-//          },
-//        ));
+//    // print('User Details');
+//    final _model = Provider.of<ApiServices>(context);
+//    return Scaffold(
+//      appBar: AppBar(
+//        title: Text('User Details'),
+//        centerTitle: true,
+//        actions: <Widget>[
+//          IconButton(
+//              icon: Icon(Icons.edit),
+//              onPressed: () {
+//                Navigator.push(
+//                  context,
+//                  MaterialPageRoute(builder: (context) => EditUserData()),
+//
+//
+//                );
+//              }),
+//        ],
+//      ),
+//      body: Container(
+//          padding: EdgeInsets.all(10),
+//          child: FutureBuilder(
+//
+//            //future:_model.name,
+//              builder: (context, index) {
+//                //var user = _model.showUsersData(index);
+//                return Column(
+//                  children: <Widget>[
+//                    Container(
+//                      height: 100,
+//                      child: Icon(
+//                        Icons.account_circle,
+//                        size: 100,
+//                      ),
+//                    ),
+//                    SizedBox(height: 50),
+//                    Card(
+//
+//                        child: Column(
+//                          children: <Widget>[
+//                            Container(
+//                              //color:Colors.black,
+//                              child: Card(
+//                                child: ListTile(
+//                                  //  padding: const EdgeInsets.all(8.0),
+//                                  title: Text(
+//                                    "Name:",
+//                                    style: TextStyle(
+//                                        fontSize: 17, fontWeight: FontWeight.bold),
+//                                  ),
+//                                ),
+//                              ),
+//                            ),
+//                            SizedBox(height: 10),
+//                            Container(
+//                              //color:Colors.black,
+//                              child: Card(
+//                                child: ListTile(
+//                                  //  padding: const EdgeInsets.all(8.0),
+//                                  title: Text(
+//                                    "Username: ${_model.data}    ",
+//                                    style: TextStyle(
+//                                        fontSize: 17, fontWeight: FontWeight.bold),
+//                                  ),
+//                                ),
+//                              ),
+//                            ),
+//                            SizedBox(height: 10),
+//                            Container(
+//                              // color:Colors.black,
+//                              child: Card(
+//                                child: ListTile(
+//                                  leading: Column(
+//                                    children: [
+//                                      Text(
+//                                        "Geo:",
+//                                        style: TextStyle(
+//                                            fontSize: 17,
+//                                            fontWeight: FontWeight.bold),
+//                                      )
+//                                    ],
+//                                  ),
+//                                  //  padding: const EdgeInsets.all(8.0),
+//                                  title: Column(children: [
+//                                    Row(
+//                                      children: [
+//                                        Text(
+//                                          "Latitude :",
+//                                          style: TextStyle(
+//                                              fontSize: 15,
+//                                              fontWeight: FontWeight.bold),
+//                                        ),
+//                                      ],
+//                                    ),
+//                                    Row(
+//                                      children: [
+//                                        Text(
+//                                          "Longitude:",
+//                                          style: TextStyle(
+//                                              fontSize: 15,
+//                                              fontWeight: FontWeight.bold),
+//                                        ),
+//                                      ],
+//                                    )
+//                                  ]),
+//                                ),
+//                              ),
+//                            ),
+//                            SizedBox(height: 10),
+//                            Container(
+//                              // color:Colors.black,
+//                              child: Card(
+//                                child: ListTile(
+//                                  //  padding: const EdgeInsets.all(8.0),
+//                                  title: Text(
+//                                    "Mobile No: ${_model.data}   ",
+//                                    style: TextStyle(
+//                                        fontSize: 17, fontWeight: FontWeight.bold),
+//                                  ),
+//                                ),
+//                              ),
+//                            ),
+//                          ],
+//                        )
+//                    )
+//                  ],
+//                );
+//              })),
+//    );
 //  }
-//
-//  onFavoritePressed(int index) {
-//    final item = _itemList[index];
-//   // print(item);
-//    setState(() {
-//      item.isFavorite = !item.isFavorite;
-//    });
-//    //print(item);
-//  }
-//}
-//
-//class ListItem extends StatelessWidget {
-//  ListItem(this.item, this.onFavoritePressed);
-//
-//  final Item item;
-//  final VoidCallback onFavoritePressed;
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return new GestureDetector(
-//        onTap: (() {onFavoritePressed();}),
-//        child: ListTile(
-//            title: Text(item.title),
-//            leading: IconButton(
-//              icon: Icon(
-//                  item.isFavorite ? Icons.favorite : Icons.favorite_border),
-//            )));
-//  }
-//}
-//
-//class Item {
-//  Item({this.title, this.isFavorite});
-//
-//  String title;
-//  bool isFavorite;
 //}
