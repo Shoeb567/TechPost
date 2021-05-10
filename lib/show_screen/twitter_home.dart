@@ -28,19 +28,21 @@ class _TwiterHomeState extends State<TwiterHome> {
     final _model = Provider.of<ApiServices>(context);
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(statusBarColor: Colors.white));
-    // ignore: file_names
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0.3,
-          title:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        backgroundColor: Colors.white,
+        elevation: 0.3,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
             const CircleAvatar(
                 backgroundColor: Colors.black,
                 child: Text("S", style: TextStyle(color: Colors.white))),
             Image.asset(AppAssets.logo),
             Image.asset(AppAssets.fatureicon),
-          ])),
+          ],
+        ),
+      ),
       body: Container(
         color: Colors.white,
         child: Consumer<ApiServices>(
@@ -81,17 +83,19 @@ class _TwiterHomeState extends State<TwiterHome> {
                                       child: Text(oneChar,
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.white)),
-                                      //radius: 70.0,
+                                              color: Colors.white),
+                                      ),
                                     ),
                                     onTap: () {
                                       print('On Tap');
                                       _model.onTappedUsersData(
                                         _model.postWithUsernameList[index].name,
-                                        _model.postWithUsernameList[index].username,
+                                        _model.postWithUsernameList[index]
+                                            .username,
                                         _model.postWithUsernameList[index].lat,
                                         _model.postWithUsernameList[index].lng,
-                                        _model.postWithUsernameList[index].phone,
+                                        _model
+                                            .postWithUsernameList[index].phone,
                                       );
                                       Navigator.push(
                                         context,
@@ -224,13 +228,6 @@ class _TwiterHomeState extends State<TwiterHome> {
                                                 .isLiked
                                             ? AppAssets.fill_heart_icon
                                             : AppAssets.heart_icon,
-//                                          color:
-//                                          _model
-//                                              .postWithUsernameList[index]
-//                                              .isLiked
-//                                              ? Colors.red
-//                                              : Colors.grey,
-                                        fit: BoxFit.cover,
                                       ),
                                     ),
                                   ),
@@ -266,8 +263,10 @@ class _TwiterHomeState extends State<TwiterHome> {
         selectedItemColor: Colors.blue,
         type: BottomNavigationBarType.fixed,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home), label: ""),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.search), label: ""),
           BottomNavigationBarItem(
               icon: Icon(Icons.notifications_none), label: ""),
           BottomNavigationBarItem(

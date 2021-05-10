@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tech_post_app/show_screen/edit_user_data.dart';
-
 import '../getAll_projectfile.dart';
-
 class UserData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -26,7 +24,7 @@ class ShowUserData extends StatefulWidget {
 class _ShowUserDataState extends State<ShowUserData> {
   @override
   Widget build(BuildContext context) {
-    print('User Details');
+   // print('User Details');
     final _model = Provider.of<ApiServices>(context);
     return Scaffold(
       appBar: AppBar(
@@ -40,7 +38,8 @@ class _ShowUserDataState extends State<ShowUserData> {
                   context,
                   MaterialPageRoute(builder: (context) => EditUserData()),
                 );
-              }),
+              },
+          ),
         ],
       ),
       body: Container(
@@ -69,36 +68,32 @@ class _ShowUserDataState extends State<ShowUserData> {
                     child: Column(
                       children: <Widget>[
                         Container(
-                          //color:Colors.black,
                           child: Card(
                             child: ListTile(
-                              //  padding: const EdgeInsets.all(8.0),
                               title: Text(
-                                // 'Name',
                                 "Name:${_model.onTappedUser.name}",
                                 style: TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.bold),
+                                    fontSize: 17, fontWeight: FontWeight.bold
+                                ),
                               ),
                             ),
                           ),
                         ),
                         SizedBox(height: 10),
                         Container(
-                          //color:Colors.black,
                           child: Card(
                             child: ListTile(
-                              //  padding: const EdgeInsets.all(8.0),
                               title: Text(
                                 "Username: ${_model.onTappedUser.username}",
                                 style: TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.bold),
+                                    fontSize: 17, fontWeight: FontWeight.bold
+                                ),
                               ),
                             ),
                           ),
                         ),
                         SizedBox(height: 10),
                         Container(
-                          // color:Colors.black,
                           child: Card(
                             child: ListTile(
                               leading: Column(
@@ -107,7 +102,8 @@ class _ShowUserDataState extends State<ShowUserData> {
                                     "Geo:",
                                     style: TextStyle(
                                         fontSize: 17,
-                                        fontWeight: FontWeight.bold),
+                                        fontWeight: FontWeight.bold
+                                    ),
                                   )
                                 ],
                               ),
@@ -118,10 +114,10 @@ class _ShowUserDataState extends State<ShowUserData> {
                                     children: [
                                       Text(
                                         'Latitude:${_model.onTappedUser.lat}',
-                                        // "Latitude :${_model.userData[index].address.geo.lat} ",
                                         style: TextStyle(
                                             fontSize: 15,
-                                            fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.bold
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -129,7 +125,6 @@ class _ShowUserDataState extends State<ShowUserData> {
                                     children: [
                                       Text(
                                         'Longitude:${_model.onTappedUser.lng}',
-                                        // "Longitude:${_model.postWithUsernameList[index].lng}",
                                         style: TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -146,11 +141,11 @@ class _ShowUserDataState extends State<ShowUserData> {
                           // color:Colors.black,
                           child: Card(
                             child: ListTile(
-                              //  padding: const EdgeInsets.all(8.0),
                               title: Text(
                                 "Mobile No:${_model.onTappedUser.phone} ",
                                 style: TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.bold),
+                                    fontSize: 17, fontWeight: FontWeight.bold
+                                ),
                               ),
                             ),
                           ),

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:tech_post_app/getAll_projectfile.dart';
 import "package:http/http.dart" as http;
+import 'package:tech_post_app/show_screen/edit_user_data.dart';
 
 class ApiServices extends ChangeNotifier {
   List<PostWithUsername> postWithUsernameList = [];
@@ -8,7 +9,6 @@ class ApiServices extends ChangeNotifier {
 
   ApiServices() {
     getAllPostWithUserName();
-    //  likeMethod(false);
   }
 
   Future<User> getUsersData(String id) async {
@@ -48,13 +48,12 @@ class ApiServices extends ChangeNotifier {
   Future<User> onTappedUsersData(String name, String username, String lat,
       String lng, String phone) async {
     print('==>>${onTappedUser}');
-    onTappedUser = User(
-      name: name,
-      username: username,
-      lat: lat,
-      lng: lng,
-      phone: phone
-    );
+    onTappedUser =
+        User(name: name,
+            username: username,
+            lat: lat,
+            lng: lng,
+            phone: phone);
     print('Add data:${onTappedUser}');
     notifyListeners();
     return onTappedUser;
@@ -66,7 +65,7 @@ class ApiServices extends ChangeNotifier {
     final List<Post> listOfPosts = await getPostData();
     for (final postList in listOfPosts) {
       User userName = await getUsersData(postList.userId);
-   //   print('==>Length Start::${postWithUsernameList.length}');
+      //   print('==>Length Start::${postWithUsernameList.length}');
       listOfPostWithUserName.add(PostWithUsername(
           userName.name,
           userName.username,

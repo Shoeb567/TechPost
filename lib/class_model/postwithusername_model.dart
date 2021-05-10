@@ -10,6 +10,4 @@ class PostWithUsername {
   bool isLiked;
 
   PostWithUsername(this.name, this.username, this.body,this.indexId,this.lat,this.lng,this.phone,this.isLiked);
-
- //PostWithUsername(this.name, this.username, this.body);
 }
