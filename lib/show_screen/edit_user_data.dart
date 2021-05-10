@@ -21,17 +21,21 @@ class EditUserData extends StatefulWidget {
 }
 
 class _EditUserDataState extends State<EditUserData> {
-  final TextEditingController editName = TextEditingController();
-  final TextEditingController editUsername = TextEditingController();
-  final TextEditingController editPhone = TextEditingController();
-  final TextEditingController editLnt = TextEditingController();
-  final TextEditingController editLng = TextEditingController();
+  final  editName = TextEditingController();
+  final  editUsername = TextEditingController();
+  final  editPhone = TextEditingController();
+  final  editLat = TextEditingController();
+  final  editLng = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     print('User Details');
     final _model = Provider.of<ApiServices>(context);
-    // editName.text = _model
+    editName.text = _model.onTappedUser.name;
+    editUsername.text = _model.onTappedUser.username;
+    editPhone.text = _model.onTappedUser.phone;
+    editLat.text = _model.onTappedUser.lat;
+    editLng.text = _model.onTappedUser.lng;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -40,13 +44,7 @@ class _EditUserDataState extends State<EditUserData> {
       ),
       body: Container(
         color: Colors.white,
-        child: ListView.builder(
-          itemCount: _model.onTappedUserList.length,
-          itemBuilder: (BuildContext context, index) {
-            editName.text = _model.onTappedUserList[index].name;
-            editUsername.text = _model.onTappedUserList[index].username;
-            editPhone.text = _model.onTappedUserList[index].phone;
-            return Column(
+        child: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 40),
@@ -78,7 +76,7 @@ class _EditUserDataState extends State<EditUserData> {
                 Padding(
                   padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
                   child: TextField(
-                    // controller: updateLnt,
+                    controller: editLat,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(), labelText: 'Latitude'),
@@ -87,7 +85,7 @@ class _EditUserDataState extends State<EditUserData> {
                 Padding(
                   padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
                   child: TextField(
-                    // controller: updateLng,
+                    controller:editLng,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(), labelText: 'Longitude'),
@@ -116,8 +114,8 @@ class _EditUserDataState extends State<EditUserData> {
                       _model.onTappedUsersData(
                         editName.text,
                         editUsername.text,
-                        editPhone.text,
-                        editPhone.text,
+                        editLat.text,
+                        editLng.text,
                         editPhone.text,
                       );
 
@@ -128,8 +126,8 @@ class _EditUserDataState extends State<EditUserData> {
                   ),
                 ),
               ],
-            );
-          },
+
+
         ),
       ),
     );

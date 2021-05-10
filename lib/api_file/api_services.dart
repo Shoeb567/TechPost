@@ -4,7 +4,7 @@ import "package:http/http.dart" as http;
 
 class ApiServices extends ChangeNotifier {
   List<PostWithUsername> postWithUsernameList = [];
-  List<User> onTappedUserList = [];
+  User onTappedUser;
 
   ApiServices() {
     getAllPostWithUserName();
@@ -15,7 +15,6 @@ class ApiServices extends ChangeNotifier {
     var response =
         await http.get('https://jsonplaceholder.typicode.com/users/$id');
     User user;
-
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
       user = User.fromJson(jsonResponse);
@@ -34,34 +33,32 @@ class ApiServices extends ChangeNotifier {
       throw Exception('Can;t Find Data');
     }
   }
-  onLikeButtonTapped(int index) {
-    if(postWithUsernameList[index].isLiked == false){
-      print('Like Index No:${ postWithUsernameList[index].indexId }');
+
+  void onLikeButtonTapped(int index) {
+    if (postWithUsernameList[index].isLiked == false) {
+      print('Like Index No:${postWithUsernameList[index].indexId}');
       postWithUsernameList[index].isLiked = true;
-    }
-    else{
-      print('DisLike Index No:${ postWithUsernameList[index].indexId }');
+    } else {
+      print('DisLike Index No:${postWithUsernameList[index].indexId}');
       postWithUsernameList[index].isLiked = false;
     }
     notifyListeners();
   }
 
-
-  onTappedUsersData(String name, String username,String phone,String lat,String lng) async{
-    print('==>>${onTappedUserList}');
-    if(onTappedUserList.isEmpty ){
-      print('Add data:${onTappedUserList}');
-     //return data.add('$name,$username,$mobile');
-      return  onTappedUserList.add(User(name: name,username: username,phone:phone));
-   }
-    else if(onTappedUserList.isNotEmpty ){
-      return {{onTappedUserList.clear()}, {onTappedUserList.add(User(name: name,username: username,phone:phone))}};
-    }
-
-   // postWithUsernameList[index].name;
+  Future<User> onTappedUsersData(String name, String username, String lat,
+      String lng, String phone) async {
+    print('==>>${onTappedUser}');
+    onTappedUser = User(
+      name: name,
+      username: username,
+      lat: lat,
+      lng: lng,
+      phone: phone
+    );
+    print('Add data:${onTappedUser}');
     notifyListeners();
+    return onTappedUser;
   }
-
 
   Future<List<PostWithUsername>> getAllPostWithUserName() async {
     print('===');
@@ -69,13 +66,20 @@ class ApiServices extends ChangeNotifier {
     final List<Post> listOfPosts = await getPostData();
     for (final postList in listOfPosts) {
       User userName = await getUsersData(postList.userId);
-      print('==>Length Start::${postWithUsernameList.length}');
+   //   print('==>Length Start::${postWithUsernameList.length}');
       listOfPostWithUserName.add(PostWithUsername(
-          userName.name, userName.username, postList.body,postList.id,userName.phone,userName.address.geo.lat,userName.address.geo.lng,false));
+          userName.name,
+          userName.username,
+          postList.body,
+          postList.id,
+          userName.phone,
+          userName.address.geo.lat,
+          userName.address.geo.lng,
+          false));
       postWithUsernameList = listOfPostWithUserName.toList();
-
+      notifyListeners();
     }
-    notifyListeners();
+
     print('==>listOfPostWithUserName::${postWithUsernameList.length}');
     return postWithUsernameList;
   }

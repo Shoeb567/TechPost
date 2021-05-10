@@ -24,8 +24,6 @@ class ShowUserData extends StatefulWidget {
 }
 
 class _ShowUserDataState extends State<ShowUserData> {
-
-
   @override
   Widget build(BuildContext context) {
     print('User Details');
@@ -47,136 +45,123 @@ class _ShowUserDataState extends State<ShowUserData> {
       ),
       body: Container(
         color: Colors.white,
-        child: Consumer<ApiServices>(
-          builder: (context, snap, _) {
-            return ListView.builder(
-              itemCount: _model.onTappedUserList.length,
-              itemBuilder: (BuildContext context, index) {
-                return Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: Color.fromRGBO(183, 182, 185, 0.1),
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Color.fromRGBO(183, 182, 185, 0.1),
+                  ),
+                ),
+              ),
+              child: Column(
+                children: [
+                  Container(
+                    height: 100,
+                    child: Icon(
+                      Icons.account_circle,
+                      size: 100,
+                    ),
+                  ),
+                  SizedBox(height: 50),
+                  Card(
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          //color:Colors.black,
+                          child: Card(
+                            child: ListTile(
+                              //  padding: const EdgeInsets.all(8.0),
+                              title: Text(
+                                // 'Name',
+                                "Name:${_model.onTappedUser.name}",
+                                style: TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.bold),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 100,
-                            child: Icon(
-                              Icons.account_circle,
-                              size: 100,
+                        SizedBox(height: 10),
+                        Container(
+                          //color:Colors.black,
+                          child: Card(
+                            child: ListTile(
+                              //  padding: const EdgeInsets.all(8.0),
+                              title: Text(
+                                "Username: ${_model.onTappedUser.username}",
+                                style: TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.bold),
+                              ),
                             ),
                           ),
-                          SizedBox(height: 50),
-                          Card(
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  //color:Colors.black,
-                                  child: Card(
-                                    child: ListTile(
-                                      //  padding: const EdgeInsets.all(8.0),
-                                      title: Text(
-                                        "Name:${_model.onTappedUserList[index].name}",
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          // color:Colors.black,
+                          child: Card(
+                            child: ListTile(
+                              leading: Column(
+                                children: [
+                                  Text(
+                                    "Geo:",
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold),
+                                  )
+                                ],
+                              ),
+                              //  padding: const EdgeInsets.all(8.0),
+                              title: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'Latitude:${_model.onTappedUser.lat}',
+                                        // "Latitude :${_model.userData[index].address.geo.lat} ",
                                         style: TextStyle(
-                                            fontSize: 17,
+                                            fontSize: 15,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                    ),
+                                    ],
                                   ),
-                                ),
-                                SizedBox(height: 10),
-                                Container(
-                                  //color:Colors.black,
-                                  child: Card(
-                                    child: ListTile(
-                                      //  padding: const EdgeInsets.all(8.0),
-                                      title: Text(
-                                        "Username: ${_model.onTappedUserList[index].username}",
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'Longitude:${_model.onTappedUser.lng}',
+                                        // "Longitude:${_model.postWithUsernameList[index].lng}",
                                         style: TextStyle(
-                                            fontSize: 17,
+                                            fontSize: 15,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 10),
-                                Container(
-                                  // color:Colors.black,
-                                  child: Card(
-                                    child: ListTile(
-                                      leading: Column(
-                                        children: [
-                                          Text(
-                                            "Geo:",
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.bold),
-                                          )
-                                        ],
-                                      ),
-                                      //  padding: const EdgeInsets.all(8.0),
-                                      title: Column(
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Text(
-                                                'Latitude',
-                                                // "Latitude :${_model.userData[index].address.geo.lat} ",
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ],
-                                          ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                'Longitude',
-                                               // "Longitude:${_model.postWithUsernameList[index].lng}",
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 10),
-                                Container(
-                                  // color:Colors.black,
-                                  child: Card(
-                                    child: ListTile(
-                                      //  padding: const EdgeInsets.all(8.0),
-                                      title: Text(
-                                        "Mobile No: ${_model.onTappedUserList[index].phone}",
-                                        style: TextStyle(
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
-                          )
-                        ],
-                      ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Container(
+                          // color:Colors.black,
+                          child: Card(
+                            child: ListTile(
+                              //  padding: const EdgeInsets.all(8.0),
+                              title: Text(
+                                "Mobile No:${_model.onTappedUser.phone} ",
+                                style: TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                );
-              },
-            );
-          },
+                  )
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

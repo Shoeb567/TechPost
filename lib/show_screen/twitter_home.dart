@@ -28,7 +28,7 @@ class _TwiterHomeState extends State<TwiterHome> {
   Widget build(BuildContext context) {
     final _model = Provider.of<ApiServices>(context);
     SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(statusBarColor: Colors.black));
+        const SystemUiOverlayStyle(statusBarColor: Colors.white));
     // ignore: file_names
     return Scaffold(
       appBar: AppBar(
@@ -94,12 +94,12 @@ class _TwiterHomeState extends State<TwiterHome> {
                                             .postWithUsernameList[index].name,
                                         _model.postWithUsernameList[index]
                                             .username,
-                                        _model.postWithUsernameList[index]
-                                            .phone,
                                         _model
                                             .postWithUsernameList[index].lat,
                                         _model
                                             .postWithUsernameList[index].lng,
+                                        _model.postWithUsernameList[index]
+                                            .phone,
                                       );
                                       Navigator.push(
                                         context,
@@ -205,66 +205,58 @@ class _TwiterHomeState extends State<TwiterHome> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    width: 50,
-                                    child: IconButton(
-                                      onPressed: () {
-                                        _model.onLikeButtonTapped(index);
-                                      },
-                                      icon: Icon(
-                                        _model.postWithUsernameList[index]
-                                            .isLiked
-                                            ? Icons.favorite
-                                            : Icons.favorite_border,
-                                        color: _model
-                                            .postWithUsernameList[index]
-                                            .isLiked
-                                            ? Colors.red
-                                            : Colors.grey,
-                                        size: 20,
-                                      ),
-                                    ),
-                                  ),
-//                                    Container(
-//
-//                                      width: 50,
-//                                      child: FlatButton(
-//                                        onPressed: () {
-//                                          _model.onLikeButtonTapped(index);
-//                                        },
-//                                        child: Image.asset(
-//                                          AppAssets.heart_icon,
-//                                          color:
-//                                          Color.fromRGBO(104, 118, 132, 1),
-////                                          _model.postWithUsernameList[index]
-////                                              .isLiked ?
-////                                         AppAssets.fill_heart_icon :AppAssets.heart_icon ,
-////                                          color:
-////                                          _model
-////                                              .postWithUsernameList[index]
-////                                              .isLiked
-////                                              ? Colors.red
-////                                              : Colors.grey,
-//                                        ),
+//                                  Container(
+//                                    width: 50,
+//                                    child: IconButton(
+//                                      onPressed: () {
+//                                        _model.onLikeButtonTapped(index);
+//                                      },
+//                                      icon: Icon(
+//                                        _model.postWithUsernameList[index]
+//                                            .isLiked
+//                                            ? Icons.favorite
+//                                            : Icons.favorite_border,
+//                                        color: _model
+//                                            .postWithUsernameList[index]
+//                                            .isLiked
+//                                            ? Colors.red
+//                                            : Colors.grey,
+//                                        size: 20,
 //                                      ),
 //                                    ),
-                                  Container(
-                                    width: 50,
-                                    child: TextButton(
-                                      onPressed: () {
-                                        _model.onLikeButtonTapped(index);
-                                      },
-                                      child: Image.asset(
-                                        AppAssets.share_icon,
-//                                          _model.postWithUsernameList[index]
-//                                              .isLiked? AppAssets.share_icon :  AppAssets.share_icon,
-                                        color:
-                                        Color.fromRGBO(104, 118, 132, 1),
+//                                  ),
+                                    Container(
+                                      width: 50,
+                                      child: TextButton(
+                                        onPressed: () {
+                                          _model.onLikeButtonTapped(index);
+                                        },
+                                        child: Image.asset(
+                                          _model.postWithUsernameList[index]
+                                              .isLiked ?
+                                         AppAssets.fill_heart_icon :AppAssets.heart_icon ,
+//                                          color:
 //                                          _model
 //                                              .postWithUsernameList[index]
 //                                              .isLiked
 //                                              ? Colors.red
 //                                              : Colors.grey,
+                                            fit: BoxFit.cover,
+
+                                        ),
+                                      ),
+                                    ),
+                                  Container(
+                                    width: 50,
+                                    child: TextButton(
+
+                                      onPressed: () {
+                                        _model.onLikeButtonTapped(index);
+                                      },
+                                      child: Image.asset(
+                                        AppAssets.share_icon,
+                                        color:
+                                        Color.fromRGBO(104, 118, 132, 1),
                                       ),
                                     ),
                                   ),
