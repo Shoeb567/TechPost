@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:tech_post_app/getAll_projectfile.dart';
 import "package:http/http.dart" as http;
-import 'package:tech_post_app/show_screen/edit_user_data.dart';
 
 class ApiServices extends ChangeNotifier {
   List<PostWithUsername> postWithUsernameList = [];
@@ -55,7 +54,7 @@ class ApiServices extends ChangeNotifier {
             lng: lng,
             phone: phone);
     print('Add data:${onTappedUser}');
-    notifyListeners();
+    //notifyListeners();
     return onTappedUser;
   }
 
