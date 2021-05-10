@@ -1,7 +1,6 @@
 import 'package:tech_post_app/getAll_projectfile.dart';
 import 'package:tech_post_app/show_screen/show_user_data.dart';
 
-
 class TwitterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -34,20 +33,19 @@ class _TwiterHomeState extends State<TwiterHome> {
       appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 0.3,
-          title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const CircleAvatar(
-                    backgroundColor: Colors.black,
-                    child: Text("S", style: TextStyle(color: Colors.white))),
-                Image.asset(AppAssets.logo),
-                Image.asset(AppAssets.fatureicon),
-              ])),
+          title:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            const CircleAvatar(
+                backgroundColor: Colors.black,
+                child: Text("S", style: TextStyle(color: Colors.white))),
+            Image.asset(AppAssets.logo),
+            Image.asset(AppAssets.fatureicon),
+          ])),
       body: Container(
         color: Colors.white,
         child: Consumer<ApiServices>(
           builder: (context, snap, _) {
-            if (snap.postWithUsernameList.isEmpty ) {
+            if (snap.postWithUsernameList.isEmpty) {
               return Container(
                 child: Center(
                   child: CircularProgressIndicator(),
@@ -88,18 +86,12 @@ class _TwiterHomeState extends State<TwiterHome> {
                                     ),
                                     onTap: () {
                                       print('On Tap');
-                                      //   _model.showUsersData(index);
                                       _model.onTappedUsersData(
-                                        _model
-                                            .postWithUsernameList[index].name,
-                                        _model.postWithUsernameList[index]
-                                            .username,
-                                        _model
-                                            .postWithUsernameList[index].lat,
-                                        _model
-                                            .postWithUsernameList[index].lng,
-                                        _model.postWithUsernameList[index]
-                                            .phone,
+                                        _model.postWithUsernameList[index].name,
+                                        _model.postWithUsernameList[index].username,
+                                        _model.postWithUsernameList[index].lat,
+                                        _model.postWithUsernameList[index].lng,
+                                        _model.postWithUsernameList[index].phone,
                                       );
                                       Navigator.push(
                                         context,
@@ -110,7 +102,6 @@ class _TwiterHomeState extends State<TwiterHome> {
                                   ),
                                 ),
                               )
-
                             ],
                           ),
                           title: Column(
@@ -137,8 +128,8 @@ class _TwiterHomeState extends State<TwiterHome> {
                                 children: [
                                   Text(
                                     ' ${_model.postWithUsernameList[index].name}',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold),
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                   Icon(Icons.verified,
                                       size: 17, color: Colors.blue),
@@ -154,8 +145,7 @@ class _TwiterHomeState extends State<TwiterHome> {
                                       '${_model.postWithUsernameList[index].username} - 10h',
                                       style: TextStyle(
                                         fontSize: 14,
-                                        color:
-                                        Color.fromRGBO(104, 118, 132, 1),
+                                        color: Color.fromRGBO(104, 118, 132, 1),
                                       ),
                                     ),
                                   ),
@@ -181,7 +171,7 @@ class _TwiterHomeState extends State<TwiterHome> {
                                 //    messageEmpty
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceAround,
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
                                     width: 50,
@@ -189,8 +179,7 @@ class _TwiterHomeState extends State<TwiterHome> {
                                       onPressed: () {},
                                       child: Image.asset(
                                         AppAssets.comment_icon,
-                                        color:
-                                        Color.fromRGBO(104, 118, 132, 1),
+                                        color: Color.fromRGBO(104, 118, 132, 1),
                                       ),
                                     ),
                                   ),
@@ -200,8 +189,7 @@ class _TwiterHomeState extends State<TwiterHome> {
                                       onPressed: () {},
                                       child: Image.asset(
                                         AppAssets.retweet_icon,
-                                        color:
-                                        Color.fromRGBO(104, 118, 132, 1),
+                                        color: Color.fromRGBO(104, 118, 132, 1),
                                       ),
                                     ),
                                   ),
@@ -225,38 +213,36 @@ class _TwiterHomeState extends State<TwiterHome> {
 //                                      ),
 //                                    ),
 //                                  ),
-                                    Container(
-                                      width: 50,
-                                      child: TextButton(
-                                        onPressed: () {
-                                          _model.onLikeButtonTapped(index);
-                                        },
-                                        child: Image.asset(
-                                          _model.postWithUsernameList[index]
-                                              .isLiked ?
-                                         AppAssets.fill_heart_icon :AppAssets.heart_icon ,
+                                  Container(
+                                    width: 50,
+                                    child: TextButton(
+                                      onPressed: () {
+                                        _model.onLikeButtonTapped(index);
+                                      },
+                                      child: Image.asset(
+                                        _model.postWithUsernameList[index]
+                                                .isLiked
+                                            ? AppAssets.fill_heart_icon
+                                            : AppAssets.heart_icon,
 //                                          color:
 //                                          _model
 //                                              .postWithUsernameList[index]
 //                                              .isLiked
 //                                              ? Colors.red
 //                                              : Colors.grey,
-                                            fit: BoxFit.cover,
-
-                                        ),
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
+                                  ),
                                   Container(
                                     width: 50,
                                     child: TextButton(
-
                                       onPressed: () {
                                         _model.onLikeButtonTapped(index);
                                       },
                                       child: Image.asset(
                                         AppAssets.share_icon,
-                                        color:
-                                        Color.fromRGBO(104, 118, 132, 1),
+                                        color: Color.fromRGBO(104, 118, 132, 1),
                                       ),
                                     ),
                                   ),

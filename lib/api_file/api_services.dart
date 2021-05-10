@@ -72,14 +72,14 @@ class ApiServices extends ChangeNotifier {
           userName.username,
           postList.body,
           postList.id,
-          userName.phone,
           userName.address.geo.lat,
           userName.address.geo.lng,
+          userName.phone,
           false));
       postWithUsernameList = listOfPostWithUserName.toList();
-      notifyListeners();
-    }
 
+    }
+    notifyListeners();
     print('==>listOfPostWithUserName::${postWithUsernameList.length}');
     return postWithUsernameList;
   }
