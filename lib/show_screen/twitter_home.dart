@@ -1,13 +1,14 @@
 import 'package:tech_post_app/getAll_projectfile.dart';
+import 'package:tech_post_app/show_screen/edit_user_data.dart';
 import 'package:tech_post_app/show_screen/show_user_data.dart';
 
 class TwitterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ApiServices>(
+    return ChangeNotifierProvider<PostListViewModel>(
       create: (BuildContext context) {
         print('Provider call');
-        return ApiServices();
+        return PostListViewModel();
       },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -25,7 +26,7 @@ class TwiterHome extends StatefulWidget {
 class _TwiterHomeState extends State<TwiterHome> {
   @override
   Widget build(BuildContext context) {
-    final _model = Provider.of<ApiServices>(context);
+    final _model = Provider.of<PostListViewModel>(context);
     SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(statusBarColor: Colors.white));
     return Scaffold(
@@ -36,8 +37,12 @@ class _TwiterHomeState extends State<TwiterHome> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const CircleAvatar(
-                backgroundColor: Colors.black,
-                child: Text("S", style: TextStyle(color: Colors.white))),
+              backgroundColor: Colors.black,
+              child: Text(
+                "S",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
             Image.asset(AppAssets.logo),
             Image.asset(AppAssets.fatureicon),
           ],
@@ -45,7 +50,7 @@ class _TwiterHomeState extends State<TwiterHome> {
       ),
       body: Container(
         color: Colors.white,
-        child: Consumer<ApiServices>(
+        child: Consumer<PostListViewModel>(
           builder: (context, snap, _) {
             if (snap.postWithUsernameList.isEmpty) {
               return Container(
@@ -80,27 +85,24 @@ class _TwiterHomeState extends State<TwiterHome> {
                                     splashColor: Colors.red,
                                     child: CircleAvatar(
                                       backgroundColor: Colors.black,
-                                      child: Text(oneChar,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
+                                      child: Text(
+                                        oneChar,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white),
                                       ),
                                     ),
                                     onTap: () {
                                       print('On Tap');
-                                      _model.onTappedUsersData(
-                                        _model.postWithUsernameList[index].name,
-                                        _model.postWithUsernameList[index]
-                                            .username,
-                                        _model.postWithUsernameList[index].lat,
-                                        _model.postWithUsernameList[index].lng,
-                                        _model
-                                            .postWithUsernameList[index].phone,
-                                      );
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => UserData()),
+                                          builder: (context) => ShowUserData(
+                                            userIndex: _model.onTappedUsersData(
+                                                _model.postWithUsernameList[
+                                                    index]),
+                                          ),
+                                        ),
                                       );
                                     },
                                   ),

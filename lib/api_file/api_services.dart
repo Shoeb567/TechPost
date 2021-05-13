@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'package:tech_post_app/getAll_projectfile.dart';
 import "package:http/http.dart" as http;
 
-class ApiServices extends ChangeNotifier {
+class PostListViewModel extends ChangeNotifier {
   List<PostWithUsername> postWithUsernameList = [];
   User onTappedUser;
 
-  ApiServices() {
+  PostListViewModel() {
     getAllPostWithUserName();
   }
 
@@ -44,17 +44,16 @@ class ApiServices extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<User> onTappedUsersData(String name, String username, String lat,
-      String lng, String phone) async {
+  User onTappedUsersData(PostWithUsername index) {
     print('==>>${onTappedUser}');
-    onTappedUser =
-        User(name: name,
-            username: username,
-            lat: lat,
-            lng: lng,
-            phone: phone);
+    onTappedUser = User(
+        name: index.name,
+        username: index.username,
+        lat: index.lat,
+        lng: index.lng,
+        phone: index.phone);
     print('Add data:${onTappedUser}');
-    //notifyListeners();
+    notifyListeners();
     return onTappedUser;
   }
 
@@ -66,16 +65,15 @@ class ApiServices extends ChangeNotifier {
       User userName = await getUsersData(postList.userId);
       //   print('==>Length Start::${postWithUsernameList.length}');
       listOfPostWithUserName.add(PostWithUsername(
-          userName.name,
-          userName.username,
-          postList.body,
-          postList.id,
-          userName.address.geo.lat,
-          userName.address.geo.lng,
-          userName.phone,
-          false));
+          name: userName.name,
+          username: userName.username,
+          body: postList.body,
+          indexId: postList.id,
+          lat: userName.address.geo.lat,
+          lng: userName.address.geo.lng,
+          phone: userName.phone,
+          isLiked: false));
       postWithUsernameList = listOfPostWithUserName.toList();
-
     }
     notifyListeners();
     print('==>listOfPostWithUserName::${postWithUsernameList.length}');

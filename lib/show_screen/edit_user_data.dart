@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:tech_post_app/show_screen/show_user_data.dart';
+
 import '../getAll_projectfile.dart';
 
-class EditUser extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-
-      //  resizeToAvoidBottomPadding: false,
-      home: EditUserData(),
-    );
-  }
-}
-
 class EditUserData extends StatefulWidget {
+  final User updateUserIndex;
+  EditUserData({this.updateUserIndex});
+
   @override
   _EditUserDataState createState() => _EditUserDataState();
 }
@@ -26,15 +18,21 @@ class _EditUserDataState extends State<EditUserData> {
   final editLat = TextEditingController();
   final editLng = TextEditingController();
 
+//  @override
+//  void initState() {
+//    // TODO: implement initState
+//    super.initState();
+//    editName.text;
+//    editUsername.text;
+//    editLat.text;
+//    editLng.text;
+//    editPhone.text;
+//  }
+
   @override
   Widget build(BuildContext context) {
     print('User Details');
-    final _model = Provider.of<ApiServices>(context);
-    editName.text = _model.onTappedUser.name;
-    editUsername.text = _model.onTappedUser.username;
-    editLat.text = _model.onTappedUser.lat;
-    editLng.text = _model.onTappedUser.lng;
-    editPhone.text = _model.onTappedUser.phone;
+    final _model = Provider.of<PostListViewModel>(context);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -56,54 +54,65 @@ class _EditUserDataState extends State<EditUserData> {
             Padding(
               padding: const EdgeInsets.only(top: 30, left: 40, right: 40),
               child: TextFormField(
-                controller: editName,
+                controller:
+                 TextEditingController(text: _model.onTappedUser.name),
+                onChanged: (value) {
+                  editName.text = value;
+                  print('Name Change::${value}');
+                },
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Name'
-                ),
+                    border: OutlineInputBorder(), labelText: 'Name'),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
               child: TextFormField(
-                controller: editUsername,
+                controller:
+                TextEditingController(text: _model.onTappedUser.username),
+                onChanged: (value) {
+                  editUsername.text = value;
+                },
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'UserName'
-                ),
+                    border: OutlineInputBorder(), labelText: 'UserName'),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
               child: TextFormField(
-                controller: editLat,
+                controller:
+                TextEditingController(text: _model.onTappedUser.lat),
+                onChanged: (value) {
+                  editLat.text = value;
+                },
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Latitude'
-                ),
+                    border: OutlineInputBorder(), labelText: 'Latitude'),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
               child: TextFormField(
-                controller: editLng,
+                controller:
+                TextEditingController(text: _model.onTappedUser.lng),
+                onChanged: (value) {
+                  editLng.text = value;
+                },
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Longitude'
-                ),
+                    border: OutlineInputBorder(), labelText: 'Longitude'),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
               child: TextFormField(
-                controller: editPhone,
+                controller:
+                TextEditingController(text: _model.onTappedUser.phone),
+                onChanged: (value) {
+                  editPhone.text = value;
+                },
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Mobile'
-                ),
+                    border: OutlineInputBorder(), labelText: 'Mobile'),
               ),
             ),
             Padding(
@@ -114,19 +123,42 @@ class _EditUserDataState extends State<EditUserData> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
-                  _model.onTappedUsersData(
-                    editName.text,
-                    editUsername.text,
-                    editLat.text,
-                    editLng.text,
-                    editPhone.text,
-                  );
+                      Navigator.pop(
+                        context,
+                        ShowUserData(
+                          userIndex: _model.onTappedUsersData(
+                            PostWithUsername(
+                              name: editName.text,
+                              username: editUsername.text,
+                              lat: editLat.text,
+                              lng: editLng.text,
+                              phone: editPhone.text,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  )
+                  //return initState();
 
-                  Navigator.pop(context);
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => UserData()));
-                },
-              ),
+//                  Navigator.push(
+//                    context,
+//                    MaterialPageRoute(
+//                      builder: (context) => ShowUserData(
+//                        userIndex: _model.onTappedUsersData(
+//                          PostWithUsername(
+//                            name: editName.text,
+//                            username: editUsername.text,
+//                            lat: editLat.text,
+//                            lng: editLng.text,
+//                            phone: editPhone.text,
+//                          ),
+//                        ),
+//                      ),
+//                    ),
+//                  );
+
+
             ),
           ],
         ),

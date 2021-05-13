@@ -1,44 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:tech_post_app/show_screen/edit_user_data.dart';
+import 'package:tech_post_app/show_screen/twitter_home.dart';
 import '../getAll_projectfile.dart';
-class UserData extends StatelessWidget {
+
+class ShowUserData extends  StatelessWidget{
+  final User userIndex;
+
+  ShowUserData({this.userIndex});
   @override
   Widget build(BuildContext context) {
-//    return ChangeNotifierProvider<ApiServices>(
-//      create: (BuildContext context) {
-//        print('Provider call');
-//        return ApiServices();
-//      },
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ShowUserData(),
-    );
-  }
-}
-
-class ShowUserData extends StatefulWidget {
-  @override
-  _ShowUserDataState createState() => _ShowUserDataState();
-}
-
-class _ShowUserDataState extends State<ShowUserData> {
-  @override
-  Widget build(BuildContext context) {
-   // print('User Details');
-    final _model = Provider.of<ApiServices>(context);
+    final _model = Provider.of<PostListViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('User Details'),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.edit),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => EditUserData()),
-                );
-              },
+            icon: Icon(Icons.edit),
+            onPressed: () {
+              print('Edit');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditUserData(
+//                    updateUserIndex: _model.onTappedUsersData(
+//                        PostWithUsername(
+//                            name: _model.onTappedUser.name,
+//                            username: _model.onTappedUser.username,
+//                          lat: _model.onTappedUser.lat,
+//                          lng: _model.onTappedUser.lng,
+//                          phone: _model.onTappedUser.phone
+//                        ),
+//                    ),
+                  ),
+                ),
+              );
+              print(  _model.onTappedUser.name,);
+              print(_model.onTappedUser.username,);
+            },
           ),
         ],
       ),
@@ -71,10 +70,10 @@ class _ShowUserDataState extends State<ShowUserData> {
                           child: Card(
                             child: ListTile(
                               title: Text(
+                                //'Name',
                                 "Name:${_model.onTappedUser.name}",
                                 style: TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.bold
-                                ),
+                                    fontSize: 17, fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
@@ -84,10 +83,10 @@ class _ShowUserDataState extends State<ShowUserData> {
                           child: Card(
                             child: ListTile(
                               title: Text(
+                                //'Username',
                                 "Username: ${_model.onTappedUser.username}",
                                 style: TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.bold
-                                ),
+                                    fontSize: 17, fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
@@ -102,8 +101,7 @@ class _ShowUserDataState extends State<ShowUserData> {
                                     "Geo:",
                                     style: TextStyle(
                                         fontSize: 17,
-                                        fontWeight: FontWeight.bold
-                                    ),
+                                        fontWeight: FontWeight.bold),
                                   )
                                 ],
                               ),
@@ -113,17 +111,18 @@ class _ShowUserDataState extends State<ShowUserData> {
                                   Row(
                                     children: [
                                       Text(
+                                        //'Latitude',
                                         'Latitude:${_model.onTappedUser.lat}',
                                         style: TextStyle(
                                             fontSize: 15,
-                                            fontWeight: FontWeight.bold
-                                        ),
+                                            fontWeight: FontWeight.bold),
                                       ),
                                     ],
                                   ),
                                   Row(
                                     children: [
                                       Text(
+                                        // 'Longitude',
                                         'Longitude:${_model.onTappedUser.lng}',
                                         style: TextStyle(
                                             fontSize: 15,
@@ -142,10 +141,10 @@ class _ShowUserDataState extends State<ShowUserData> {
                           child: Card(
                             child: ListTile(
                               title: Text(
+                                //  'Mobile',
                                 "Mobile No:${_model.onTappedUser.phone} ",
                                 style: TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.bold
-                                ),
+                                    fontSize: 17, fontWeight: FontWeight.bold),
                               ),
                             ),
                           ),
