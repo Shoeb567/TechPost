@@ -1,15 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:tech_post_app/show_screen/edit_user_data.dart';
-
 import '../getAll_projectfile.dart';
 
-class ShowUserData extends  StatelessWidget{
+class ShowUserData extends StatefulWidget {
   final User userIndex;
 
   ShowUserData({this.userIndex});
+
+  @override
+  _ShowUserDataState createState() => _ShowUserDataState();
+}
+
+class _ShowUserDataState extends State<ShowUserData> {
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    widget.userIndex.name;
+    widget.userIndex.username;
+    widget.userIndex.lat;
+    widget.userIndex.lng;
+    widget.userIndex.phone;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final _model = Provider.of<PostListViewModel>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('User Details'),
@@ -17,26 +33,27 @@ class ShowUserData extends  StatelessWidget{
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.edit),
-            onPressed: () {
-              print('Edit');
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => EditUserData(
-//                    updateUserIndex: _model.onTappedUsersData(
-//                        PostWithUsername(
-//                            name: _model.onTappedUser.name,
-//                            username: _model.onTappedUser.username,
-//                          lat: _model.onTappedUser.lat,
-//                          lng: _model.onTappedUser.lng,
-//                          phone: _model.onTappedUser.phone
-//                        ),
-//                    ),
-                  ),
-                ),
-              );
-              print(  _model.onTappedUser.name,);
-              print(_model.onTappedUser.username,);
+            onPressed: () async {
+
+                  print('Edit');
+             await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditUserData(
+                        updateUserData: User(
+                            name: widget.userIndex.name,
+                            username: widget.userIndex.username,
+                            lat: widget.userIndex.lat,
+                            lng: widget.userIndex.lng,
+                            phone: widget.userIndex.phone),
+                      ),
+                    ),
+                  );
+
+                  print('Show Name:${widget.userIndex.name}');
+                  print('Show Username:${widget.userIndex.username}');
+                 // print(data.toString());
+
             },
           ),
         ],
@@ -71,7 +88,7 @@ class ShowUserData extends  StatelessWidget{
                             child: ListTile(
                               title: Text(
                                 //'Name',
-                                "Name:${_model.onTappedUser.name}",
+                                "Name:${widget.userIndex.name}",
                                 style: TextStyle(
                                     fontSize: 17, fontWeight: FontWeight.bold),
                               ),
@@ -84,7 +101,7 @@ class ShowUserData extends  StatelessWidget{
                             child: ListTile(
                               title: Text(
                                 //'Username',
-                                "Username: ${_model.onTappedUser.username}",
+                                "Username: ${widget.userIndex.username}",
                                 style: TextStyle(
                                     fontSize: 17, fontWeight: FontWeight.bold),
                               ),
@@ -112,7 +129,7 @@ class ShowUserData extends  StatelessWidget{
                                     children: [
                                       Text(
                                         //'Latitude',
-                                        'Latitude:${_model.onTappedUser.lat}',
+                                        'Latitude:${widget.userIndex.lat}',
                                         style: TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -123,7 +140,7 @@ class ShowUserData extends  StatelessWidget{
                                     children: [
                                       Text(
                                         // 'Longitude',
-                                        'Longitude:${_model.onTappedUser.lng}',
+                                        'Longitude:${widget.userIndex.lng}',
                                         style: TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
@@ -142,7 +159,7 @@ class ShowUserData extends  StatelessWidget{
                             child: ListTile(
                               title: Text(
                                 //  'Mobile',
-                                "Mobile No:${_model.onTappedUser.phone} ",
+                                "Mobile No:${widget.userIndex.phone} ",
                                 style: TextStyle(
                                     fontSize: 17, fontWeight: FontWeight.bold),
                               ),

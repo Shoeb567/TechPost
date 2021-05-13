@@ -11,10 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: TwitterApp(),
-//      routes: {
-//        '/first' : (context) => TwitterApp(),
-//        '/second' : (context) => UserData(),
-//      },
+
     );
   }
 }
