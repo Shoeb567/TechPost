@@ -5,6 +5,7 @@ import '../getAll_projectfile.dart';
 
 class EditUserData extends StatefulWidget {
   final User updateUserIndex;
+
   EditUserData({this.updateUserIndex});
 
   @override
@@ -55,7 +56,7 @@ class _EditUserDataState extends State<EditUserData> {
               padding: const EdgeInsets.only(top: 30, left: 40, right: 40),
               child: TextFormField(
                 controller:
-                 TextEditingController(text: _model.onTappedUser.name),
+                    TextEditingController(text: _model.onTappedUser.name),
                 onChanged: (value) {
                   editName.text = value;
                   print('Name Change::${value}');
@@ -68,7 +69,7 @@ class _EditUserDataState extends State<EditUserData> {
               padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
               child: TextFormField(
                 controller:
-                TextEditingController(text: _model.onTappedUser.username),
+                    TextEditingController(text: _model.onTappedUser.username),
                 onChanged: (value) {
                   editUsername.text = value;
                 },
@@ -80,7 +81,7 @@ class _EditUserDataState extends State<EditUserData> {
               padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
               child: TextFormField(
                 controller:
-                TextEditingController(text: _model.onTappedUser.lat),
+                    TextEditingController(text: _model.onTappedUser.lat),
                 onChanged: (value) {
                   editLat.text = value;
                 },
@@ -93,7 +94,7 @@ class _EditUserDataState extends State<EditUserData> {
               padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
               child: TextFormField(
                 controller:
-                TextEditingController(text: _model.onTappedUser.lng),
+                    TextEditingController(text: _model.onTappedUser.lng),
                 onChanged: (value) {
                   editLng.text = value;
                 },
@@ -106,7 +107,7 @@ class _EditUserDataState extends State<EditUserData> {
               padding: const EdgeInsets.only(top: 20, left: 40, right: 40),
               child: TextFormField(
                 controller:
-                TextEditingController(text: _model.onTappedUser.phone),
+                    TextEditingController(text: _model.onTappedUser.phone),
                 onChanged: (value) {
                   editPhone.text = value;
                 },
@@ -123,42 +124,22 @@ class _EditUserDataState extends State<EditUserData> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
-                      Navigator.pop(
-                        context,
-                        ShowUserData(
-                          userIndex: _model.onTappedUsersData(
-                            PostWithUsername(
-                              name: editName.text,
-                              username: editUsername.text,
-                              lat: editLat.text,
-                              lng: editLng.text,
-                              phone: editPhone.text,
-                            ),
-                          ),
+                  Navigator.pop(
+                    context,
+                    ShowUserData(
+                      userIndex: _model.onTappedUsersData(
+                        PostWithUsername(
+                          name: editName.text,
+                          username: editUsername.text,
+                          lat: editLat.text,
+                          lng: editLng.text,
+                          phone: editPhone.text,
                         ),
-                      );
-                    },
-                  )
-                  //return initState();
-
-//                  Navigator.push(
-//                    context,
-//                    MaterialPageRoute(
-//                      builder: (context) => ShowUserData(
-//                        userIndex: _model.onTappedUsersData(
-//                          PostWithUsername(
-//                            name: editName.text,
-//                            username: editUsername.text,
-//                            lat: editLat.text,
-//                            lng: editLng.text,
-//                            phone: editPhone.text,
-//                          ),
-//                        ),
-//                      ),
-//                    ),
-//                  );
-
-
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),
