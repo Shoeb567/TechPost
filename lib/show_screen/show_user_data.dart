@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tech_post_app/show_screen/edit_user_data.dart';
-import 'package:tech_post_app/show_screen/twitter_home.dart';
+
 import '../getAll_projectfile.dart';
 
 class ShowUserData extends  StatelessWidget{
