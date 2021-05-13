@@ -34,22 +34,23 @@ class _ShowUserDataState extends State<ShowUserData> {
           IconButton(
             icon: Icon(Icons.edit),
             onPressed: () async {
-
-                  print('Edit');
-             await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EditUserData(
-                        updateUserData: User(
-                            name: widget.userIndex.name,
-                            username: widget.userIndex.username,
-                            lat: widget.userIndex.lat,
-                            lng: widget.userIndex.lng,
-                            phone: widget.userIndex.phone),
-                      ),
-                    ),
-                  );
-
+             // setState(() {
+                print('Edit');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        EditUserData(
+                          updateUserData: User(
+                              name: widget.userIndex.name,
+                              username: widget.userIndex.username,
+                              lat: widget.userIndex.lat,
+                              lng: widget.userIndex.lng,
+                              phone: widget.userIndex.phone),
+                        ),
+                  ),
+                );
+              //},);
                   print('Show Name:${widget.userIndex.name}');
                   print('Show Username:${widget.userIndex.username}');
                  // print(data.toString());
