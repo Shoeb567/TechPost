@@ -51,8 +51,10 @@ class _Form_ValidationState extends State<Form_Validation> {
             isButtonValidate = true;
           } else {
             print('form is invalid');
+            isButtonValidate = false;
           }
-        } else {
+        }
+        else{
           isButtonValidate = false;
         }
       },
@@ -94,8 +96,6 @@ class _Form_ValidationState extends State<Form_Validation> {
                     validator: (value) {
                       RegExp nameRegExp = new RegExp(r'^[a-zA-Z]+$');
                       if (!nameRegExp.hasMatch(value)) {
-//                        return 'Please Enter MobileNo!';
-//                      } else if (value.length != 10) {
                         return 'Please Enter Valid Name!';
                       }
                       return null;
@@ -103,21 +103,6 @@ class _Form_ValidationState extends State<Form_Validation> {
                     onChanged: (val) {
                       isButtonEnabled();
                     },
-
-//                    validator: (value) {
-//                      //isButtonValidate = false;
-//                      if (value.isEmpty) {
-//                        return 'Username can not be empty!';
-//                      }
-//                      else if(value.contains( r'(^[0-9])')){
-//                        return 'Please Enter Valid Name!';
-//                      }
-//                      return null;
-//                    },
-//                    onChanged: (val) {
-//                      isEnabled();
-//                    },
-                    //  validator: (value) => value.isEmpty ? 'Please Enter Name!':null,
                   ),
                 ),
                 Padding(
@@ -129,8 +114,6 @@ class _Form_ValidationState extends State<Form_Validation> {
                     keyboardType: TextInputType.number,
                     validator: (value) {
                       if (value.length != 10) {
-//                        return 'Please Enter MobileNo!';
-//                      } else if (value.length != 10) {
                         return 'Please Enter Valid MobileNo!';
                       }
                       return null;
@@ -168,11 +151,11 @@ class _Form_ValidationState extends State<Form_Validation> {
                       'Validate',
                       style: TextStyle(color: Colors.white),
                     ),
-                    onPressed: isButtonValidate
+                    onPressed:
+                    isButtonValidate
                         ? () {
                       print("Button Enabled");
-                    }
-                        : null,
+                    } : null,
                     //  (nameData && mobileData == false) ? () async => await validateAndSave() : null,
 
 //                          isButtonValidate ? ()=>
