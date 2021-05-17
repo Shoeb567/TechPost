@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tech_post_app/show_screen/edit_user_data.dart';
 import '../getAll_projectfile.dart';
 
+// ignore: must_be_immutable
 class ShowUserData extends StatefulWidget {
    User userIndex;
 

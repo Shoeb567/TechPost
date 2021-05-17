@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tech_post_app/show_screen/show_user_data.dart';
 
 import '../getAll_projectfile.dart';
 
