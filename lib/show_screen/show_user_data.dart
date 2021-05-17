@@ -13,17 +13,6 @@ class ShowUserData extends StatefulWidget {
 }
 
 class _ShowUserDataState extends State<ShowUserData> {
-//  @override
-//  void initState() {
-//    // TODO: implement initState
-//
-//    widget.userIndex.name;
-//    widget.userIndex.username;
-//    widget.userIndex.lat;
-//    widget.userIndex.lng;
-//    widget.userIndex.phone;
-//    super.initState();
-//  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +26,7 @@ class _ShowUserDataState extends State<ShowUserData> {
             onPressed: () async {
              //
                 print('Edit');
-                final  User result = await Navigator.push(
+                  User updateUsers = await Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
@@ -52,7 +41,7 @@ class _ShowUserDataState extends State<ShowUserData> {
                   ),
                 );
                 setState(() {
-                  widget.userIndex = result;
+                  widget.userIndex = updateUsers;
                 });
                   print('Show Name:${widget.userIndex.name}');
                   print('Show Username:${widget.userIndex.username}');
