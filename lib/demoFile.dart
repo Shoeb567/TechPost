@@ -1,120 +1,120 @@
-//import 'package:flutter/material.dart';
-//
-//void main() {
-//  runApp(MaterialApp(
-//    title: 'Flutter',
-//    home: FirstScreen(),
-//  ));
-//}
-//
-//class FirstScreen extends StatefulWidget {
-//  @override
-//  _FirstScreenState createState() {
-//    return _FirstScreenState();
-//  }
-//}
-//
-//class _FirstScreenState extends State<FirstScreen> {
-//
-//  String text = 'Text';
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return Scaffold(
-//      appBar: AppBar(title: Text('First screen')),
-//      body: Center(
-//        child: Column(
-//          mainAxisAlignment: MainAxisAlignment.center,
-//          children: [
-//
-//            Padding(
-//              padding: const EdgeInsets.all(32.0),
-//              child: Text(
-//                text,
-//                style: TextStyle(fontSize: 24),
-//              ),
-//            ),
-//
-//            RaisedButton(
-//              child: Text(
-//                'Go to second screen',
-//                style: TextStyle(fontSize: 24),
-//              ),
-//              onPressed: () {
-//                _awaitReturnValueFromSecondScreen(context);
-//              },
-//            )
-//
-//          ],
-//        ),
-//      ),
-//    );
-//  }
-//
-//  void _awaitReturnValueFromSecondScreen(BuildContext context) async {
-//
-//    // start the SecondScreen and wait for it to finish with a result
-//    final result = await Navigator.push(
-//        context,
-//        MaterialPageRoute(
-//          builder: (context) => SecondScreen(),
-//        ));
-//
-//    // after the SecondScreen result comes back update the Text widget with it
-//    setState(() {
-//      text = result.toString();
-//    });
-//  }
-//}
-//
-//class SecondScreen extends StatefulWidget {
-//  @override
-//  _SecondScreenState createState() {
-//    return _SecondScreenState();
-//  }
-//}
-//
-//class _SecondScreenState extends State<SecondScreen> {
-//  // this allows us to access the TextField text
-//  TextEditingController textFieldController = TextEditingController();
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    return Scaffold(
-//      appBar: AppBar(title: Text('Second screen')),
-//      body: Column(
-//        mainAxisAlignment: MainAxisAlignment.center,
-//        children: [
-//
-//          Padding(
-//            padding: const EdgeInsets.all(32.0),
-//            child: TextField(
-//              controller: textFieldController,
-//              style: TextStyle(
-//                fontSize: 24,
-//                color: Colors.black,
-//              ),
-//            ),
-//          ),
-//
-//          RaisedButton(
-//            child: Text(
-//              'Send text back',
-//              style: TextStyle(fontSize: 24),
-//            ),
-//            onPressed: () {
-//              _sendDataBack(context);
-//            },
-//          )
-//
-//        ],
-//      ),
-//    );
-//  }
-//
-//  // get the text in the TextField and send it back to the FirstScreen
-//  void _sendDataBack(BuildContext context) {
-//    String textToSendBack = textFieldController.text;
-//    Navigator.pop(context, textToSendBack);
-//  }
-//}
+import 'package:flutter/material.dart';
+
+class WorkGround extends StatefulWidget {
+  @override
+  _WorkGroundState createState() => _WorkGroundState();
+}
+
+class _WorkGroundState extends State<WorkGround> {
+  final _formKey = GlobalKey<FormState>();
+  final _usernameFocusNode = FocusNode();
+  final _phoneNumberFocusNode = FocusNode();
+
+  /*
+  * Step 1.
+  * */
+  String _userNameErrorText;
+  bool _userNameError = false;
+  String _phoneNumberErrorText;
+  bool _phoneNumberError = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            TextFormField(
+              focusNode: _usernameFocusNode,
+              decoration: InputDecoration(
+                labelText: 'Username',
+                /*
+                * Step 2
+                * */
+                errorText: _userNameErrorText, // Handling error manually
+              ),
+              textInputAction: TextInputAction.next,
+              /*
+              * Step 3
+              * */
+              validator: (value) {
+                setState(() {
+                  if(value.isEmpty) {
+                    _userNameError = true;
+                    _userNameErrorText = 'Enter Username';
+                  }
+                });
+                return null; // Return null to handle error manually.
+              },
+              /*
+              * Step 4
+              * */
+              onChanged: (value) {
+                setState(() {
+                  _userNameError = false;
+                  _userNameErrorText = null; // Resets the error
+                });
+              },
+              /*
+              * Step 5
+              * */
+              onFieldSubmitted: (value) {
+                _formKey.currentState.validate(); // Trigger validation
+                if(!_userNameError) {
+                  FocusScope.of(context).requestFocus(_phoneNumberFocusNode);
+                }
+              },
+            ),
+            TextFormField(
+              focusNode: _phoneNumberFocusNode,
+              decoration: InputDecoration(
+                labelText: 'Phone Number',
+                /*
+                * Step 2
+                * */
+                errorText: _phoneNumberErrorText, // Handling error manually
+              ),
+              textInputAction: TextInputAction.done,
+              /*
+              * Step 3
+              * */
+              validator: (value) {
+                setState(() {
+                  if(value.isEmpty) {
+                    _phoneNumberError = true;
+                    _phoneNumberErrorText = 'Enter Phone number';
+                  } else if( value.length < 10) {
+                    _phoneNumberError = true;
+                    _phoneNumberErrorText = 'Invalid Phone number';
+                  }
+                });
+                return null; // Return null to handle error manually.
+              },
+              /*
+              * Step 4
+              * */
+              onChanged: (value) {
+                setState(() {
+                  _phoneNumberError = false;
+                  _phoneNumberErrorText = null; // Resets the error
+                });
+              },
+              /*
+              * Step 5
+              * */
+              onFieldSubmitted: (value) {
+                _formKey.currentState.validate(); // Trigger validation
+                if(!_phoneNumberError) {
+                  // submit form or whatever your code flow is...
+                }
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
