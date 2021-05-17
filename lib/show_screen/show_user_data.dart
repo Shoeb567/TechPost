@@ -3,7 +3,7 @@ import 'package:tech_post_app/show_screen/edit_user_data.dart';
 import '../getAll_projectfile.dart';
 
 class ShowUserData extends StatefulWidget {
-  final User userIndex;
+   User userIndex;
 
   ShowUserData({this.userIndex});
 
@@ -12,17 +12,17 @@ class ShowUserData extends StatefulWidget {
 }
 
 class _ShowUserDataState extends State<ShowUserData> {
-  @override
-  void initState() {
-    // TODO: implement initState
-
-    widget.userIndex.name;
-    widget.userIndex.username;
-    widget.userIndex.lat;
-    widget.userIndex.lng;
-    widget.userIndex.phone;
-    super.initState();
-  }
+//  @override
+//  void initState() {
+//    // TODO: implement initState
+//
+//    widget.userIndex.name;
+//    widget.userIndex.username;
+//    widget.userIndex.lat;
+//    widget.userIndex.lng;
+//    widget.userIndex.phone;
+//    super.initState();
+//  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +34,9 @@ class _ShowUserDataState extends State<ShowUserData> {
           IconButton(
             icon: Icon(Icons.edit),
             onPressed: () async {
-             // setState(() {
+             //
                 print('Edit');
-                Navigator.push(
+                final  User result = await Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) =>
@@ -50,7 +50,9 @@ class _ShowUserDataState extends State<ShowUserData> {
                         ),
                   ),
                 );
-              //},);
+                setState(() {
+                  widget.userIndex = result;
+                });
                   print('Show Name:${widget.userIndex.name}');
                   print('Show Username:${widget.userIndex.username}');
                  // print(data.toString());

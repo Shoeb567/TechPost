@@ -102,34 +102,16 @@ class _EditUserDataState extends State<EditUserData> {
                   onPressed: () {
                         Navigator.pop(
                           context,
-                          ShowUserData(
-                            userIndex: User(
+                            User(
                                 name: editName.text,
                                 username: editUsername.text,
                                 lat: editLat.text,
                                 lng: editLng.text,
                                 phone: editPhone.text),
-                          ),
                         );
                     print(editName.text);
                     print(editUsername.text);
                   },
-//                  onPressed: () {
-//                    Navigator.push(
-//                      context,
-//                      MaterialPageRoute(
-//                        builder: (context) =>
-//                        (ShowUserData(
-//                          userIndex: User(
-//                              name: editName.text,
-//                              username: editUsername.text,
-//                              lat: editLat.text,
-//                              lng: editLng.text,
-//                              phone: editPhone.text),
-//                        )),
-//                      ),
-//                    );
-//                  },
                 ),
               ),
             ],
