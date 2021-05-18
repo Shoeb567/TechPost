@@ -94,7 +94,8 @@ class _Form_ValidationState extends State<Form_Validation> {
 //                        isNameValid ? null : "Please enter valid name!"
                     ),
                     validator: (value) {
-                      RegExp nameRegExp = new RegExp(r'^[a-zA-Z]+$');
+                     // RegExp nameRegExp = new RegExp(r'\s [a-zA-Z]+$');
+                      RegExp nameRegExp = new RegExp(r'^[a-zA-Z ]+$');
                       if (!nameRegExp.hasMatch(value)) {
                         return 'Please Enter Valid Name!';
                       }

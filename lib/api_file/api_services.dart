@@ -74,9 +74,9 @@ class PostListViewModel extends ChangeNotifier {
           phone: userName.phone,
           isLiked: false));
       postWithUsernameList = listOfPostWithUserName.toList();
-
+      notifyListeners();
     }
-    notifyListeners();
+
     print('==>listOfPostWithUserName::${postWithUsernameList.length}');
     return postWithUsernameList;
   }
