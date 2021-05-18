@@ -33,9 +33,9 @@ class _Form_ValidationState extends State<Form_Validation> {
   bool isButtonEnabled() {
     setState(
       () {
-        if ((txtName.text != '') &&
-            (txtMobile.text != '') &&
-            (txtEmail.text != '')) {
+//        if ((txtName.text != '') &&
+//            (txtMobile.text != '') &&
+//            (txtEmail.text != '')) {
           final formValid = _formKey.currentState;
           if (formValid.validate()) {
             print('Form is valid');
@@ -44,10 +44,11 @@ class _Form_ValidationState extends State<Form_Validation> {
           } else {
             print('form is invalid');
             isButtonValidate = false;
-          }
-        } else {
-          isButtonValidate = false;
+          //}
         }
+//        else {
+//          isButtonValidate = false;
+//        }
       },
     );
     return isButtonValidate;
@@ -86,7 +87,7 @@ class _Form_ValidationState extends State<Form_Validation> {
                     ),
                     validator: (value) {
                       RegExp nameRegExp = new RegExp(r'^[a-zA-Z ]+$');
-                      if (!nameRegExp.hasMatch(value)) {
+                      if (!nameRegExp.hasMatch(value) && (txtName.text != '')) {
                         return 'Please Enter Valid Name!';
                       }
                       return null;
@@ -104,7 +105,7 @@ class _Form_ValidationState extends State<Form_Validation> {
                         border: OutlineInputBorder(), labelText: 'Mobile'),
                     keyboardType: TextInputType.number,
                     validator: (value) {
-                      if (value.length != 10) {
+                      if (value.length != 10 && (txtMobile.text != '') ) {
                         return 'Please Enter Valid MobileNo!';
                       }
                       return null;
@@ -122,7 +123,7 @@ class _Form_ValidationState extends State<Form_Validation> {
                         border: OutlineInputBorder(), labelText: 'Email'),
                     validator: (value) {
                       RegExp emailRegExp = new RegExp(emailPattern);
-                      if (!emailRegExp.hasMatch(value)) {
+                      if (!emailRegExp.hasMatch(value) && (txtEmail.text != '') ) {
                         return 'Enter Valid Email address';
                       } else {
                         return null;
