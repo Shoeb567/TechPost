@@ -11,15 +11,7 @@ class _Form_ValidationState extends State<Form_Validation> {
   TextEditingController txtEmail = TextEditingController();
   bool isButtonValidate = false;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
- // bool isNameValid = true;
-
-
+//r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+.com";
   String emailPattern = "[a-zA-Z0-9\+\.\_\%\-\+]{1,256}" +
       "\\@" +
       "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
@@ -40,7 +32,7 @@ class _Form_ValidationState extends State<Form_Validation> {
 //  }
   bool isButtonEnabled() {
     setState(
-          () {
+      () {
         if ((txtName.text != '') &&
             (txtMobile.text != '') &&
             (txtEmail.text != '')) {
@@ -53,8 +45,7 @@ class _Form_ValidationState extends State<Form_Validation> {
             print('form is invalid');
             isButtonValidate = false;
           }
-        }
-        else{
+        } else {
           isButtonValidate = false;
         }
       },
@@ -88,13 +79,12 @@ class _Form_ValidationState extends State<Form_Validation> {
                   child: TextFormField(
                     controller: txtName,
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Name',
+                      border: OutlineInputBorder(),
+                      labelText: 'Name',
 //                        errorText:
 //                        isNameValid ? null : "Please enter valid name!"
                     ),
                     validator: (value) {
-                     // RegExp nameRegExp = new RegExp(r'\s [a-zA-Z]+$');
                       RegExp nameRegExp = new RegExp(r'^[a-zA-Z ]+$');
                       if (!nameRegExp.hasMatch(value)) {
                         return 'Please Enter Valid Name!';
@@ -133,8 +123,6 @@ class _Form_ValidationState extends State<Form_Validation> {
                     validator: (value) {
                       RegExp emailRegExp = new RegExp(emailPattern);
                       if (!emailRegExp.hasMatch(value)) {
-//                        return 'Enter Email address';
-//                      } else if (!emailRegExp.hasMatch(value)) {
                         return 'Enter Valid Email address';
                       } else {
                         return null;
@@ -152,24 +140,11 @@ class _Form_ValidationState extends State<Form_Validation> {
                       'Validate',
                       style: TextStyle(color: Colors.white),
                     ),
-                    onPressed:
-                    isButtonValidate
+                    onPressed: isButtonValidate
                         ? () {
-                      print("Button Enabled");
-                    } : null,
-                    //  (nameData && mobileData == false) ? () async => await validateAndSave() : null,
-
-//                          isButtonValidate ? ()=>
-//                          validateAndSave() : null;
-//                          if(isButtonValidate == true) {
-//                            validateAndSave();
-//                          }
-//                          else
-//                            {
-//                              validateAndSave();
-//                            }
-
-                    // },
+                            print("Button Enabled");
+                          }
+                        : null,
                   ),
                 ),
               ],
