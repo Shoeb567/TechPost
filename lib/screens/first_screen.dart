@@ -11,7 +11,8 @@ class FirstScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final  args = ModalRoute.of(context).settings.arguments as User_Model;
+   // final FirstScreen args = ModalRoute.of(context).settings.arguments;
+    final  user_model_data = ModalRoute.of(context).settings.arguments as User_Model ;
 
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +42,7 @@ class FirstScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Data is::${args.loginVerify}'),
+            Text('Data is::${user_model_data.loginVerify}'),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {

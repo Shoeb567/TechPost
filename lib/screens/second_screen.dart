@@ -8,7 +8,7 @@ class SecondScreen extends StatelessWidget {
 //   SecondScreen({ this.name,  this.mobile});
   @override
   Widget build(BuildContext context) {
-    final  args = ModalRoute.of(context).settings.arguments as User_Model;
+    final  user_model_data = ModalRoute.of(context).settings.arguments as User_Model;
     return Scaffold(
       appBar: AppBar(
         title: Text('Second Screen'),
@@ -19,9 +19,9 @@ class SecondScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-            Text('Name ::${args.name}'),
+            Text('Name ::${user_model_data.name}'),
             SizedBox(height: 20),
-            Text('Mobile No ::${args.mobile}'),
+            Text('Mobile No ::${user_model_data.mobile}'),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {

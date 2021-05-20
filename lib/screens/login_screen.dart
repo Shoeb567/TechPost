@@ -10,12 +10,9 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  //String data = "Please LogIn";
   @override
   Widget build(BuildContext context) {
-    final  args = ModalRoute.of(context).settings.arguments as User_Model;
-    var obj = User_Model(loginStatus:'Shoeb');
-   // print(args.loginStatus);
+    final  user_model_data = ModalRoute.of(context).settings.arguments as User_Model;
     print('Log In User');
 
     return Scaffold(
@@ -79,7 +76,7 @@ class _LogInState extends State<LogIn> {
 //            Padding(
 //              padding: const EdgeInsets.only(top: 40),
 //              child: Text(
-//                'Status::${args.loginStatus}',
+//                'Status::${user_model_data.loginStatus}',
 //                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
 //              ),
 //            ),
