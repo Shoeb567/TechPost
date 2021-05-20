@@ -41,8 +41,8 @@ class LogOut extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () {
-               // Navigator.pushNamedAndRemoveUntil(context, '/first',ModalRoute.withName('/third'));
                 Navigator.pushNamedAndRemoveUntil(context, '/', (Route<dynamic> route) => false,arguments: LogIn(logInObj: 'LogOut'));
+               // Navigator.pushNamedAndRemoveUntil(context, '/first',ModalRoute.withName('/third'));
                // Navigator.of(context).pushReplacementNamed("/");
 //                Navigator.pushAndRemoveUntil(
 //                  context,
