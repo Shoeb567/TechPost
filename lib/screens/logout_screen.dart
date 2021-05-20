@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tech_post_app/screens/user_class_model.dart';
 
 // ignore: must_be_immutable
 class LogOut extends StatelessWidget {
@@ -38,7 +39,7 @@ class LogOut extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(context, '/', (Route<dynamic> route) => false);
+                Navigator.pushNamedAndRemoveUntil(context, '/', (Route<dynamic> route) => false,arguments: User_Model(loginStatus: 'Logout User'));
                // Navigator.pushNamedAndRemoveUntil(context, '/first',ModalRoute.withName('/third'));
                // Navigator.of(context).pushReplacementNamed("/");
 //                Navigator.pushAndRemoveUntil(

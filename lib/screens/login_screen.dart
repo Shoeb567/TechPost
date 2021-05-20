@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tech_post_app/screens/first_screen.dart';
+import 'package:tech_post_app/screens/user_class_model.dart';
 // ignore: must_be_immutable
 class LogIn extends StatefulWidget {
-  String logInObj = "Please LogIn";
-  LogIn({this.logInObj});
+//  String logInObj = "Please LogIn";
+//  LogIn({this.logInObj});
   @override
   _LogInState createState() => _LogInState();
 }
@@ -12,8 +13,11 @@ class _LogInState extends State<LogIn> {
   //String data = "Please LogIn";
   @override
   Widget build(BuildContext context) {
-   // final LogIn args = ModalRoute.of(context).settings.arguments;
+    final  args = ModalRoute.of(context).settings.arguments as User_Model;
+    var obj = User_Model(loginStatus:'Shoeb');
+   // print(args.loginStatus);
     print('Log In User');
+
     return Scaffold(
       appBar: AppBar(
         title: Text('LogIn User'),
@@ -56,7 +60,7 @@ class _LogInState extends State<LogIn> {
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed("/first",arguments: FirstScreen(firstRouteName: 'LogIn SuccessFull'));
+                  Navigator.of(context).pushReplacementNamed("/first",arguments: User_Model(loginVerify: 'LogIn SuccessFull'));
 //                  Navigator.of(context).pushReplacement(
 //                    MaterialPageRoute(
 //                      builder: (context) => FirstScreen(),
@@ -71,11 +75,11 @@ class _LogInState extends State<LogIn> {
                 },
               ),
             ),
-
+//
 //            Padding(
 //              padding: const EdgeInsets.only(top: 40),
 //              child: Text(
-//                'Status::',
+//                'Status::${args.loginStatus}',
 //                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
 //              ),
 //            ),

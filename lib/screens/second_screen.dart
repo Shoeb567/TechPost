@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:tech_post_app/screens/user_class_model.dart';
 
 // ignore: must_be_immutable
 class SecondScreen extends StatelessWidget {
- final String name,mobile;
-
-   SecondScreen({ this.name,  this.mobile});
+// final String name,mobile;
+//
+//   SecondScreen({ this.name,  this.mobile});
   @override
   Widget build(BuildContext context) {
-    final SecondScreen args = ModalRoute.of(context).settings.arguments;
+    final  args = ModalRoute.of(context).settings.arguments as User_Model;
     return Scaffold(
       appBar: AppBar(
         title: Text('Second Screen'),

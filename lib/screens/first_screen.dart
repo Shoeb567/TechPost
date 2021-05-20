@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:tech_post_app/screens/second_screen.dart';
+import 'package:tech_post_app/screens/user_class_model.dart';
 // ignore: must_be_immutable
 class FirstScreen extends StatelessWidget {
-  String firstRouteName;
+ // String firstRouteName;
 
 //   String name='Shoeb Shaikh';
 //   String mobile='7990508505';
-  FirstScreen({this.firstRouteName});
+  //FirstScreen({this.firstRouteName});
 
   @override
   Widget build(BuildContext context) {
-    final FirstScreen args = ModalRoute.of(context).settings.arguments;
+    final  args = ModalRoute.of(context).settings.arguments as User_Model;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('First Screen'),
@@ -27,7 +29,7 @@ class FirstScreen extends StatelessWidget {
                   Navigator.of(context).popAndPushNamed(
                     "/second",
                     arguments:
-                        SecondScreen(name: 'Aamir', mobile: '7990505825'),
+                    User_Model(name: 'Aamir', mobile: '7990505825'),
                   );
                 },
               ),
@@ -39,14 +41,14 @@ class FirstScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Data is::${args.firstRouteName}'),
+            Text('Data is::${args.loginVerify}'),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 print('OnTapSecond');
                 Navigator.pushNamed(context, '/second',
                     arguments:
-                    SecondScreen(name: 'Shoeb', mobile: '1234567890'));
+                    User_Model(name: 'Shoeb', mobile: '1234567890'));
 //            Navigator.of(context)
 //                .popUntil(ModalRoute.withName("/second"));
                 //  Navigator.of(context).pushReplacementNamed("/second");
