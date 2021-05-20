@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tech_post_app/screens/second_screen.dart';
-
 // ignore: must_be_immutable
 class FirstScreen extends StatelessWidget {
   String firstRouteName;

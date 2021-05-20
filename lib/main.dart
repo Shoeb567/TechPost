@@ -1,15 +1,10 @@
-
-
 import 'package:tech_post_app/getAll_projectfile.dart';
-
 import 'package:tech_post_app/screens/first_screen.dart';
 import 'package:tech_post_app/screens/login_screen.dart';
 import 'package:tech_post_app/screens/logout_screen.dart';
 import 'package:tech_post_app/screens/second_screen.dart';
 import 'package:tech_post_app/screens/third_screen.dart';
 
-
-//
 void main() {
   runApp(MyApp());
 }

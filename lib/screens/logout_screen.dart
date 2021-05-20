@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tech_post_app/screens/login_screen.dart';
-
 // ignore: must_be_immutable
 class LogOut extends StatelessWidget {
-  String logOutVar;
-  LogOut({logOutVar});
 //  @override
 //  _LogOutState createState() => _LogOutState();
 //}
