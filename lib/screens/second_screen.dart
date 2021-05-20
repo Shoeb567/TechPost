@@ -5,7 +5,6 @@ class SecondScreen extends StatelessWidget {
  final String name,mobile;
 
    SecondScreen({ this.name,  this.mobile});
-
   @override
   Widget build(BuildContext context) {
     final SecondScreen args = ModalRoute.of(context).settings.arguments;

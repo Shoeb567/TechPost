@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tech_post_app/screens/login_screen.dart';
+
 // ignore: must_be_immutable
 class LogOut extends StatelessWidget {
 //  @override
@@ -38,7 +38,7 @@ class LogOut extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(context, '/', (Route<dynamic> route) => false,arguments: LogIn(logInObj: 'LogOut'));
+                Navigator.pushNamedAndRemoveUntil(context, '/', (Route<dynamic> route) => false);
                // Navigator.pushNamedAndRemoveUntil(context, '/first',ModalRoute.withName('/third'));
                // Navigator.of(context).pushReplacementNamed("/");
 //                Navigator.pushAndRemoveUntil(

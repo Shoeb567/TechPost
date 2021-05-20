@@ -72,13 +72,13 @@ class _LogInState extends State<LogIn> {
               ),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(top: 40),
-              child: Text(
-                'Status::',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
+//            Padding(
+//              padding: const EdgeInsets.only(top: 40),
+//              child: Text(
+//                'Status::',
+//                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+//              ),
+//            ),
           ],
         ),
       ),
