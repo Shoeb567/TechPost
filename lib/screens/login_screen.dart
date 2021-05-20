@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tech_post_app/screens/class_model_screens.dart';
 import 'package:tech_post_app/screens/first_screen.dart';
 // ignore: must_be_immutable
 class LogIn extends StatefulWidget {
@@ -9,6 +10,7 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
+  User_Data obj;
   //String data = "Please LogIn";
   @override
   Widget build(BuildContext context) {
@@ -72,13 +74,13 @@ class _LogInState extends State<LogIn> {
               ),
             ),
 
-//            Padding(
-//              padding: const EdgeInsets.only(top: 40),
-//              child: Text(
-//                'Status::',
-//                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//              ),
-//            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 40),
+              child: Text(
+                'Status::${obj.name}',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
           ],
         ),
       ),
