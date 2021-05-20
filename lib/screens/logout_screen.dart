@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:tech_post_app/screens/login_screen.dart';
 
-class LogOut extends StatefulWidget {
-  @override
-  _LogOutState createState() => _LogOutState();
-}
-
-class _LogOutState extends State<LogOut> {
+// ignore: must_be_immutable
+class LogOut extends StatelessWidget {
+  String logOutVar;
+  LogOut({logOutVar});
+//  @override
+//  _LogOutState createState() => _LogOutState();
+//}
+//
+//class _LogOutState extends State<LogOut> {
   @override
   Widget build(BuildContext context) {
     print('Log Out User');
@@ -19,6 +22,14 @@ class _LogOutState extends State<LogOut> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.popUntil(context, ModalRoute.withName('/second'));
+
+              },
+              child: Text('Show Second Screen!\n    (PopUntil)'),
+            ),
+            SizedBox(height: 20),
             Text(
               'LogOut User',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -26,12 +37,12 @@ class _LogOutState extends State<LogOut> {
             SizedBox(height: 20),
             ElevatedButton(
               child: Text(
-                'Logout',
+                'Logout\n    (pushNamedAndRemoveUntil)',
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () {
                // Navigator.pushNamedAndRemoveUntil(context, '/first',ModalRoute.withName('/third'));
-                Navigator.pushNamedAndRemoveUntil(context, '/', (Route<dynamic> route) => false);
+                Navigator.pushNamedAndRemoveUntil(context, '/', (Route<dynamic> route) => false,arguments: LogIn(logInObj: 'LogOut'));
                // Navigator.of(context).pushReplacementNamed("/");
 //                Navigator.pushAndRemoveUntil(
 //                  context,

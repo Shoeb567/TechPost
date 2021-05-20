@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tech_post_app/screens/first_screen.dart';
-
 
 
 class ThirdScreen extends StatelessWidget {
@@ -12,11 +10,14 @@ class ThirdScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-         //   Navigator.popUntil(context, ModalRoute.withName('/first'));
-           Navigator.of(context).pushNamed("/logout");
-            // Navigator.of(context).pushReplacementNamed("/logout");
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed("/logout");
+                //   Navigator.popUntil(context, ModalRoute.withName('/first'));
+                // Navigator.of(context).pushReplacementNamed("/logout");
 //            Navigator.pushAndRemoveUntil(
 //                context,
 //                MaterialPageRoute(
@@ -24,10 +25,14 @@ class ThirdScreen extends StatelessWidget {
 //                          firstRouteName: 'This is Passing data on First Route',
 //                        )),
 //                ModalRoute.withName('/logout'));
-            // Navigator.pop(context);
-            // Navigate back to first screen when tapped.
-          },
-          child: Text('Go to Logout Screen!'),
+                // Navigator.pop(context);
+                // Navigate back to first screen when tapped.
+              },
+              child: Text('Go to Logout Screen!\n    (PushNamed)'),
+            ),
+            SizedBox(height: 20),
+
+          ],
         ),
       ),
     );

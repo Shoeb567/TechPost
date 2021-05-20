@@ -8,9 +8,7 @@ import 'package:tech_post_app/screens/logout_screen.dart';
 import 'package:tech_post_app/screens/second_screen.dart';
 import 'package:tech_post_app/screens/third_screen.dart';
 
-import 'package:tech_post_app/show_screen/edit_user_data.dart';
-import 'package:tech_post_app/show_screen/show_user_data.dart';
-import 'package:tech_post_app/show_screen/twitter_home.dart';
+
 //
 void main() {
   runApp(MyApp());

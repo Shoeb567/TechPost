@@ -25,12 +25,12 @@ class SecondScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+                Navigator.pushNamed(context, '/third');
                   // Navigator.of(context).popAndPushNamed("/third");
                 //   Navigator.of(context).pushReplacementNamed("/second");
-                Navigator.pushNamed(context, '/third');
                 //Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>FirstScreen()),ModalRoute.withName('/'));
               },
-              child: Text('Go to Third Screen!'),
+              child: Text('Go to Third Screen!\n(pushedNamed)'),
             ),
           ],
         ),
