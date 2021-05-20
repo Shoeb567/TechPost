@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tech_post_app/show_screen/edit_user_data.dart';
 import '../getAll_projectfile.dart';
 
+
+
 // ignore: must_be_immutable
 class ShowUserData extends StatefulWidget {
    User userIndex;
@@ -13,7 +15,16 @@ class ShowUserData extends StatefulWidget {
 }
 
 class _ShowUserDataState extends State<ShowUserData> {
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    widget.userIndex.name;
+    widget.userIndex.username;
+    widget.userIndex.lat;
+    widget.userIndex.lng;
+    widget.userIndex.phone;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,8 +35,9 @@ class _ShowUserDataState extends State<ShowUserData> {
           IconButton(
             icon: Icon(Icons.edit),
             onPressed: () async {
-             //
+
                 print('Edit');
+                //Navigator.pushNamed(context,'/editUserData');
                   User updateUsers = await Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -41,6 +53,7 @@ class _ShowUserDataState extends State<ShowUserData> {
                   ),
                 );
                 setState(() {
+                  print('SetState::');
                   widget.userIndex = updateUsers;
                 });
                   print('Show Name:${widget.userIndex.name}');
@@ -121,7 +134,7 @@ class _ShowUserDataState extends State<ShowUserData> {
                                   Row(
                                     children: [
                                       Text(
-                                        //'Latitude',
+                                       //'Latitude',
                                         'Latitude:${widget.userIndex.lat}',
                                         style: TextStyle(
                                             fontSize: 15,
@@ -132,7 +145,7 @@ class _ShowUserDataState extends State<ShowUserData> {
                                   Row(
                                     children: [
                                       Text(
-                                        // 'Longitude',
+                                         //'Longitude',
                                         'Longitude:${widget.userIndex.lng}',
                                         style: TextStyle(
                                             fontSize: 15,
@@ -151,7 +164,7 @@ class _ShowUserDataState extends State<ShowUserData> {
                           child: Card(
                             child: ListTile(
                               title: Text(
-                                //  'Mobile',
+                                  //'Mobile',
                                 "Mobile No:${widget.userIndex.phone} ",
                                 style: TextStyle(
                                     fontSize: 17, fontWeight: FontWeight.bold),

@@ -1,4 +1,5 @@
 import 'package:tech_post_app/getAll_projectfile.dart';
+import 'package:tech_post_app/show_screen/edit_user_data.dart';
 
 import 'package:tech_post_app/show_screen/show_user_data.dart';
 
@@ -11,6 +12,12 @@ class TwitterApp extends StatelessWidget {
         return PostListViewModel();
       },
       child: MaterialApp(
+        initialRoute: '/',
+        routes: {
+          //'/twitterHome': (context) => TwitterApp(),
+          '/showUserData' : (context) => ShowUserData(),
+          '/editUserData' : (context) => EditUserData()
+        },
         debugShowCheckedModeBanner: false,
         home: TwiterHome(),
       ),
@@ -36,6 +43,13 @@ class _TwiterHomeState extends State<TwiterHome> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+//            IconButton(
+//              icon: Icon(Icons.edit,color: Colors.black,),
+//              onPressed: ()  {
+//                print('Edit');
+//                Navigator.pushNamed(context,'/showUserData');
+//              },
+//            ),
             const CircleAvatar(
               backgroundColor: Colors.black,
               child: Text(
@@ -78,6 +92,7 @@ class _TwiterHomeState extends State<TwiterHome> {
                         child: ListTile(
                           leading: Column(
                             children: [
+
                               ClipOval(
                                 child: Material(
                                   color: Colors.black, // button color
@@ -94,6 +109,7 @@ class _TwiterHomeState extends State<TwiterHome> {
                                     ),
                                     onTap: () {
                                       print('On Tap');
+                                    //  Navigator.pushNamed(context, '/showUserData');
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -121,7 +137,7 @@ class _TwiterHomeState extends State<TwiterHome> {
                                     color: Color.fromRGBO(104, 118, 132, 1),
                                   ),
                                   Text(
-                                    '  Twitter Home',
+                                    'Twitter Home',
                                     style: TextStyle(
                                       fontSize: 10,
                                       color: Color.fromRGBO(104, 118, 132, 1),
