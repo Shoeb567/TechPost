@@ -2,9 +2,9 @@ class User_Model {
   String name;
   String mobile;
   String loginVerify;
-  String loginStatus;
+ final String loginStatus;
 
-  User_Model({this.name, this.mobile, this.loginVerify, this.loginStatus='LogIn'});
+  User_Model({this.name, this.mobile, this.loginVerify, this.loginStatus='Please LogIn'});
 
 }
 //class Login_Status{

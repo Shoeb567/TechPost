@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:tech_post_app/screens/second_screen.dart';
 import 'package:tech_post_app/screens/user_class_model.dart';
+
 // ignore: must_be_immutable
 class FirstScreen extends StatelessWidget {
- // String firstRouteName;
-
-//   String name='Shoeb Shaikh';
-//   String mobile='7990508505';
-  //FirstScreen({this.firstRouteName});
+       String firstRouteName;
+//
+////   String name='Shoeb Shaikh';
+////   String mobile='7990508505';
+     FirstScreen({this.firstRouteName});
 
   @override
   Widget build(BuildContext context) {
-   // final FirstScreen args = ModalRoute.of(context).settings.arguments;
-    final  user_model_data = ModalRoute.of(context).settings.arguments as User_Model ;
+    // final FirstScreen args = ModalRoute.of(context).settings.arguments;
+    final user_model_data =
+        ModalRoute.of(context).settings.arguments as User_Model;
 
     return Scaffold(
       appBar: AppBar(
@@ -29,8 +30,7 @@ class FirstScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).popAndPushNamed(
                     "/second",
-                    arguments:
-                    User_Model(name: 'Aamir', mobile: '7990505825'),
+                    arguments: User_Model(name: 'Aamir', mobile: '7990505825'),
                   );
                 },
               ),
@@ -42,14 +42,21 @@ class FirstScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Data is::${user_model_data.loginVerify}'),
+            Text(
+              'Username is::${user_model_data.name}',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            Text('Password is::${user_model_data.mobile}',
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            SizedBox(height: 20),
+            Text('Status::${user_model_data.loginVerify}'),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 print('OnTapSecond');
                 Navigator.pushNamed(context, '/second',
-                    arguments:
-                    User_Model(name: 'Shoeb', mobile: '1234567890'));
+                    arguments: User_Model(name: 'Shoeb', mobile: '1234567890'));
 //            Navigator.of(context)
 //                .popUntil(ModalRoute.withName("/second"));
                 //  Navigator.of(context).pushReplacementNamed("/second");

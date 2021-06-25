@@ -1,29 +1,30 @@
 import 'package:tech_post_app/getAll_projectfile.dart';
-import 'package:tech_post_app/show_screen/edit_user_data.dart';
+//import 'package:tech_post_app/show_screen/edit_user_data.dart';
 
 import 'package:tech_post_app/show_screen/show_user_data.dart';
 
-class TwitterApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider<PostListViewModel>(
-      create: (BuildContext context) {
-        print('Provider call');
-        return PostListViewModel();
-      },
-      child: MaterialApp(
-        initialRoute: '/',
-        routes: {
-          //'/twitterHome': (context) => TwitterApp(),
-          '/showUserData' : (context) => ShowUserData(),
-          '/editUserData' : (context) => EditUserData()
-        },
-        debugShowCheckedModeBanner: false,
-        home: TwiterHome(),
-      ),
-    );
-  }
-}
+//
+//class TwitterApp extends StatelessWidget {
+//  @override
+//  Widget build(BuildContext context) {
+//    return ChangeNotifierProvider<PostListViewModel>(
+//      create: (BuildContext context) {
+//        print('Provider call');
+//        return PostListViewModel();
+//      },
+//      child: MaterialApp(
+//        initialRoute: '/',
+//        routes: {
+//          //'/twitterHome': (context) => TwitterApp(),
+//          '/showUserData' : (context) => ShowUserData(),
+//          '/editUserData' : (context) => EditUserData()
+//        },
+//        debugShowCheckedModeBanner: false,
+//        home: TwiterHome(),
+//      ),
+//    );
+//  }
+//}
 
 class TwiterHome extends StatefulWidget {
   @override
@@ -38,7 +39,7 @@ class _TwiterHomeState extends State<TwiterHome> {
         const SystemUiOverlayStyle(statusBarColor: Colors.white));
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        //backgroundColor: Colors.white,
         elevation: 0.3,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,10 +52,10 @@ class _TwiterHomeState extends State<TwiterHome> {
 //              },
 //            ),
             const CircleAvatar(
-              backgroundColor: Colors.black,
+              backgroundColor: Colors.grey,
               child: Text(
                 "S",
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
               ),
             ),
             Image.asset(AppAssets.logo),
@@ -63,7 +64,7 @@ class _TwiterHomeState extends State<TwiterHome> {
         ),
       ),
       body: Container(
-        color: Colors.white,
+        //color: Colors.white,
         child: Consumer<PostListViewModel>(
           builder: (context, snap, _) {
             if (snap.postWithUsernameList.isEmpty) {
@@ -92,14 +93,13 @@ class _TwiterHomeState extends State<TwiterHome> {
                         child: ListTile(
                           leading: Column(
                             children: [
-
                               ClipOval(
                                 child: Material(
-                                  color: Colors.black, // button color
+                                //  color: Colors.grey, // button color
                                   child: InkWell(
                                     splashColor: Colors.red,
                                     child: CircleAvatar(
-                                      backgroundColor: Colors.black,
+                                      backgroundColor: Colors.grey,
                                       child: Text(
                                         oneChar,
                                         style: TextStyle(
@@ -109,7 +109,15 @@ class _TwiterHomeState extends State<TwiterHome> {
                                     ),
                                     onTap: () {
                                       print('On Tap');
-                                    //  Navigator.pushNamed(context, '/showUserData');
+//                                      Navigator.pushNamed(
+//                                        context,
+//                                        '/showUser',
+//                                        arguments: ShowUserData(
+//                                          userIndex: User(
+//                                          name: _model.postWithUsernameList[index].name
+//
+//                                          ),)
+//                                      );
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -140,6 +148,7 @@ class _TwiterHomeState extends State<TwiterHome> {
                                     'Twitter Home',
                                     style: TextStyle(
                                       fontSize: 10,
+                                      fontWeight: FontWeight.bold,
                                       color: Color.fromRGBO(104, 118, 132, 1),
                                     ),
                                   )
@@ -158,6 +167,7 @@ class _TwiterHomeState extends State<TwiterHome> {
                                   Text(
                                     '@',
                                     style: TextStyle(
+                                      fontWeight: FontWeight.bold,
                                       fontSize: 15,
                                       color: Color.fromRGBO(104, 118, 132, 1),
                                     ),
@@ -167,6 +177,7 @@ class _TwiterHomeState extends State<TwiterHome> {
                                       '${_model.postWithUsernameList[index].username} - 10h',
                                       style: TextStyle(
                                         fontSize: 14,
+                                        fontWeight: FontWeight.bold,
                                         color: Color.fromRGBO(104, 118, 132, 1),
                                       ),
                                     ),
@@ -179,14 +190,15 @@ class _TwiterHomeState extends State<TwiterHome> {
                                 ],
                               ),
                               SizedBox(height: 10),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                        '${_model.postWithUsernameList[index].body}'),
-                                  ),
-                                ],
+                               Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                     Expanded(
+                                       child: Text(
+                                            '${_model.postWithUsernameList[index].body}',style: TextStyle( fontWeight: FontWeight.bold)),
+                                     ),
+                                  ],
+
                               ),
                               SizedBox(height: 15),
                               Row(
@@ -278,13 +290,11 @@ class _TwiterHomeState extends State<TwiterHome> {
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0.3,
         backgroundColor: Colors.white,
-        selectedItemColor: Colors.blue,
+      // selectedItemColor: Colors.blue,
         type: BottomNavigationBarType.fixed,
         items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home), label: ""),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.search), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: ""),
           BottomNavigationBarItem(
               icon: Icon(Icons.notifications_none), label: ""),
           BottomNavigationBarItem(
